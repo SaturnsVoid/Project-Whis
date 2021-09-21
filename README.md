@@ -308,6 +308,7 @@ Advanced Commands
          PocoMail
          Postbox
          IncrediMail
+         SendMail
       - Messangers
          PSI
          PSI+
@@ -354,6 +355,7 @@ Advanced Commands
          SquirrelSQL
          PostgreSQL
          Robomongo(Robo 3T)
+         phpMyAdmin
      - Disscord Tokens
           Discord
           Discord Canary
@@ -366,7 +368,7 @@ Advanced Commands
          Binance
          IntelliForms
          Miranda
-         XAMPP (SendMail, phpMyAdmin)
+         XAMPP
          Notepad++
          TortoiseSVN
          Windows Credential Manager  (Credman)
@@ -490,7 +492,7 @@ TODO
 *   Download and Run (GO - Cross)
 *   Download and Inject (GO - Windows)
 *   DigiSpark Scripts (Arduino)
-    *   Download and Run with UAC Bypass
+    *   Download and Run with UAC
 *   File Size Pumper (GO - Cross)
 *   hVNC Project (C++)
     *   Based on TinyNukes hVNC
@@ -503,8 +505,6 @@ TODO
 *   Runtime & Scantime Crypter Project (GO - Windows)
 
 # Install
-
-TODO
 
 # Support
 
@@ -563,7 +563,7 @@ TODO
 *   [ ] Clean code and Re-Organize
 *   [ ] Extensive internal testing of all clients and features
 *   [ ] ....
-*   [ ] Release
+*   [ ] Release?
 
 # Donations and Support
 
