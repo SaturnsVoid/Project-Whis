@@ -506,9 +506,11 @@ TODO
 
 # Install
 
+_TODO_
+
 # Support
 
-TODO
+_TODO_
 
 # In-Development
 
@@ -575,4 +577,4 @@ Please Donate To Bitcoin Address: **1AEbR1utjaYu3SGtBKZCLJMRR5RS7Bp7eE**
 
 # Credits
 
-TODO
+_TODO_
