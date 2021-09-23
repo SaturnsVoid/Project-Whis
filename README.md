@@ -1,5 +1,7 @@
 # Project-Whis (_WORKING NAME_)
 
+PROJECT WILL BE RELEASED WHEN I FEEL ITS READY. THIS IS A UPDATE PAGE ON WHAT I AM WORKING ON. SUBJECT TO CHANGE. 
+
 Project-Whis is a Advanced HTTP Botnet / Remote Admin Tool written in GoLANG mainly. The Server (C2) is Cross-Platform and can be run on Windows, Linux, MacOS, Etc. once compiled for it. Supported Clients for Windows, Linux and Android Based Systems. The user Frontend is written in HTML, CSS3, JavaScript while using **Bootstrap4** and **Font Awesome** frameworks.
 
 Suggestions of features and commands you would like to see please leave a message and I will look into it. 
@@ -18,9 +20,7 @@ By Downloading, Forking, Editing or compiling this source code you agree to the 
 4.  I DO NOT GUARANTY THIS CODE WILL WORK ON ALL SYSTEMS.
 5.  Only scan with **non-distributing** Anti-Virus scanners like (DynCheck, AVCheck, AVBox, AntiScan, Run4Me, Scan4Me, Etc.)
 
-I develop malware as a hobby, I do not use this in the wild, I only test on personal networks and computers.
-
-Everything has a price.
+I develop malware as a hobby, **I do not use this in the wild**, I only **test on personal networks and computers.**
 
 # C2 (Command and Control)
 
