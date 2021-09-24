@@ -349,7 +349,7 @@ Advanced Commands
          Pizel Worlds
          ClickWars2
      - Password Managment
-         Authy
+         Authy Desktop
          WinAuth
          RoboForm
          1Password
@@ -383,7 +383,7 @@ Advanced Commands
          Apache Maven
          Git
          Transmission
-         GitHub
+         GitHub Desktop
          ExpanDrive
          CoffeeCup Software
          Ngrok 
