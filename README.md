@@ -359,16 +359,16 @@ Advanced Commands
          PostgreSQL
          Robomongo(Robo 3T)
          phpMyAdmin
-     - Disscord Tokens
+     - Discord Tokens
          Discord
          Discord Canary
          Discord PTB
          Discord Development
      - Downloaders
-     	 Transmission
-     	 qBittorrent
-     	 JDownloader
-     	 Git
+          Transmission
+          qBittorrent
+          JDownloader
+          Git
          GitHub Desktop
      - Product Keys
          Windows Prodoct Key
@@ -381,6 +381,7 @@ Advanced Commands
          GNU Privacy Guard
          Notepad++
          SDRTrunk
+         Microsoft Remote Desktop (RDP)
          TortoiseSVN
          Windows Credential Manager  (Credman)
          Windows AutoLogon
