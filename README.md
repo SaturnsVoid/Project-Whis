@@ -383,6 +383,7 @@ Advanced Commands
          Apache Maven
          Git
          Transmission
+         qBittorrent
          GitHub Desktop
          ExpanDrive
          CoffeeCup Software
