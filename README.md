@@ -360,10 +360,16 @@ Advanced Commands
          Robomongo(Robo 3T)
          phpMyAdmin
      - Disscord Tokens
-          Discord
-          Discord Canary
-          Discord PTB
-          Discord Development
+         Discord
+         Discord Canary
+         Discord PTB
+         Discord Development
+     - Downloaders
+     	 Transmission
+     	 qBittorrent
+     	 JDownloader
+     	 Git
+         GitHub Desktop
      - Product Keys
          Windows Prodoct Key
      - Others
@@ -372,7 +378,9 @@ Advanced Commands
          IntelliForms
          Miranda
          XAMPP
+         GNU Privacy Guard
          Notepad++
+         SDRTrunk
          TortoiseSVN
          Windows Credential Manager  (Credman)
          Windows AutoLogon
@@ -381,15 +389,10 @@ Advanced Commands
          Windows Subsystem for Linux
          PHP Composer
          Apache Maven
-         Git
-         Transmission
-         qBittorrent
-         GitHub Desktop
          ExpanDrive
          CoffeeCup Software
          Ngrok 
          OBS Studio
-         JDownloader
          Vitalwerks DUC (No-IP)
          Proxifier
          Apache Directory Studio
