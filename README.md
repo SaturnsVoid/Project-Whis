@@ -365,10 +365,10 @@ Advanced Commands
          Discord PTB
          Discord Development
      - Downloaders
-          Transmission
-          qBittorrent
-          JDownloader
-          Git
+         Transmission
+         qBittorrent
+         JDownloader
+         Git
          GitHub Desktop
      - Product Keys
          Windows Prodoct Key
