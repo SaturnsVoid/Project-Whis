@@ -216,10 +216,13 @@ Advanced Commands
          Doge
          Electrum
          Electrum-LTC
+         ElectrumCash
+         Electrum-btcp
          Ethereum
          Exodus
          Guarda
          Jaxx
+         MultiBitHD
          LBRY
          Litecoin
          Monero
