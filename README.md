@@ -216,7 +216,7 @@ Advanced Commands
          Doge
          Electrum
          Electrum-LTC
-         ElectrumCash
+         ElectronCash
          Electrum-btcp
          Ethereum
          Exodus
