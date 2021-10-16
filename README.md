@@ -346,7 +346,7 @@ Advanced Commands
          Rogues Tale
          Turba
          Growtopia
-         Pizel Worlds
+         Pixel Worlds
          ClickWars2
      - Password Managment
          Authy Desktop
@@ -367,6 +367,7 @@ Advanced Commands
      - Downloaders
          Transmission
          qBittorrent
+         IDM (Internet Download Manager)
          JDownloader
          Git
          GitHub Desktop
@@ -390,6 +391,7 @@ Advanced Commands
          Windows Subsystem for Linux
          PHP Composer
          Apache Maven
+         Plague Cheats Client
          ExpanDrive
          CoffeeCup Software
          Ngrok 
