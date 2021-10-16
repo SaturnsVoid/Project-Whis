@@ -388,6 +388,7 @@ Advanced Commands
          Windows AutoLogon
          Windows Credential Files
          WinRAR
+         Winbox
          Windows Subsystem for Linux
          PHP Composer
          Apache Maven
