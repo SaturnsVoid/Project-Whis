@@ -1,6 +1,6 @@
 # Project-Whis (_WORKING NAME_)
 
-PROJECT WILL BE RELEASED WHEN I FEEL ITS READY. THIS IS A UPDATE PAGE ON WHAT I AM WORKING ON. SUBJECT TO CHANGE. 
+PROJECT WILL BE RELEASED WHEN I FEEL ITS READY. THIS IS A UPDATE PAGE ON WHAT I AM WORKING ON. SUBJECT TO CHANGE. I HAVE REAL LIFE OBLIGATIONS SO THERE MAY BE TIMES WITHOUT ANY UPDATES.
 
 Project-Whis is a Advanced HTTP Botnet / Remote Admin Tool written in GoLANG mainly. The Server (C2) is Cross-Platform and can be run on Windows, Linux, MacOS, Etc. once compiled for it. Supported Clients for Windows, Linux and Android Based Systems. The user Frontend is written in HTML, CSS3, JavaScript while using **Bootstrap4** and **Font Awesome** frameworks.
 
@@ -582,7 +582,7 @@ _TODO_
 
 ![](https://blockchain.info/Resources/buttons/donate_64.png)
 
-Taking time out of my life to study, code and debug projects like these takes time and money away from me, any support will be apricated and will aid in the future projects I am working on and plan to release. 
+Taking time out of my life to study, code and debug projects like these takes time and money away from me and my family, any support will be apricated and will aid in the future projects I am working on and plan to release. 
 
 Please Donate To Bitcoin Address: **1AEbR1utjaYu3SGtBKZCLJMRR5RS7Bp7eE**
 
