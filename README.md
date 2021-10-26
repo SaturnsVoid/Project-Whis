@@ -148,6 +148,7 @@ Advanced Commands
          Chrome SxS
          Chrome-Beta
          Chromium
+         Chromium Embedded Framework (CEF)
          Chromodo
          CocCoc
          Comodo
