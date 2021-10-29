@@ -366,6 +366,7 @@ Advanced Commands
          Discord Canary
          Discord PTB
          Discord Development
+         Lightcord
      - Downloaders
          Transmission
          qBittorrent
