@@ -139,6 +139,7 @@ Advanced Commands
      - Chromium Web-Browsers (CreditCards,Cookies,Passwords,Autofill,History++)
          360chrome
          Amgigo
+         Avast Secure
          Brave
          Bromium
          CatallinaGroup
