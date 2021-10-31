@@ -207,6 +207,7 @@ Advanced Commands
          QupZilla
          Mozilla SeaMonkey
          Lunascape
+         FlashPeak SlimBrowser
      - Cryptocurrency Wallets (Inlcuding Browser based)
          AtomicWallet
          Bitcoin
@@ -314,6 +315,7 @@ Advanced Commands
          Postbox
          IncrediMail
          SendMail
+         PostboxApp
       - Messangers
          PSI
          PSI+
