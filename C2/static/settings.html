@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{.Name}} | Settings</title>
+
+    <!-- Google Font: Source Sans Pro -->
+
+    <link href="../static/css/all.min.css" rel="stylesheet"><!-- Theme style -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link href="../static/css/adminlte.min.css" rel="stylesheet">
+    <link href="../static/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/select.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/toastr.min.css">
+</head>
+<body class="hold-transition dark-mode sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-gray-dark navbar-dark">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <i class="fas fa-expand-arrows-alt"> Full Screen</i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../logout" role="button"><i class="fas fa-sign-out-alt"> Logout</i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="../" class="brand-link">
+
+            <span class="brand-text font-weight-light"><center>{{.Name}}</center></span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="../static/images/avatar6.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a class="d-block">{{.Username}}</a>
+                </div>
+            </div>
+
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="../" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Clients
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="../clients/windows" class="nav-link">
+                                    <i class="nav-icon fab fa-windows"></i>
+                                    <p>Windows</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                              <a href="../clients/linux" class="nav-link">
+                                <i class="fab fa-linux nav-icon"></i>
+                                <p>Linux</p>
+                              </a>
+                            </li>
+
+                        </ul>
+                        <li class="nav-item">
+                        <a href="../ddos" class="nav-link">
+                            <i class="nav-icon fas fa-network-wired"></i>
+                            <p>
+                                DDoS Control
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../socks" class="nav-link">
+                            <i class="nav-icon fas fa-project-diagram"></i>
+                            <p>
+                                Socks & Proxies
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Task Management
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="./tasks" class="nav-link">
+                                    <i class="nav-icon fas fa-list-ul"></i>
+                                    <p>
+                                        General Tasks
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="./onconnect" class="nav-link">
+                                    <i class="nav-icon fas fa-ethernet"></i>
+                                    <p>
+                                        On Connection Tasks
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../settings" class="nav-link active">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Settings
+                                <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1><i class="fas fa-cogs"></i> Settings</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="card card-primary card-outline">
+                            <form action="../save/settings" class="form-horizontal" id="save" method="post" name="save">
+                                <div class="card-header">
+                                    <h5 class="m-0">C2 Settings</h5>
+                                </div>
+                                <div class="card-body">
+
+                                    <label for="name" class="col- col-form-label"> C2 Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="...."
+                                           value="{{.Name}}">
+
+                                    <label for="name" class="col- col-form-label">Client Encryption Password</label>
+
+                                    <input type="text" class="form-control" id="enckey" placeholder="1234567"
+                                           value="{{.EncKey}}">
+
+                                    <label for="name" class="col- col-form-label">Client User-Agent</label>
+
+                                    <input type="text" class="form-control" id="usrAgent"
+                                           placeholder="Mozilla/5.0 (Windows NT 10.0; WOW64; Trident/7.0; Touch; rv:11.0) like Gecko"
+                                           value="{{.UserAgent}}">
+
+
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary icon-btn" type="submit"><i
+                                            class="fas fa-fw fa-lg fa-save"></i> Save
+                                    </button>&nbsp;&nbsp;&nbsp; &nbsp;<a class="btn btn-danger float-right" href="#"
+                                                                         onclick="resetFormA()"><i
+                                        class="fa fa-fw fa-lg fa-times-circle"></i> Clear Form</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <form action="../save/deamon" class="form-horizontal" id="deamon" method="post"
+                                  name="deamon">
+                                <div class="card-header">
+                                    <h5 class="m-0">Daemon Settings</h5>
+
+                                </div>
+                                <div class="card-body">
+
+                                    <div class="form-group">
+                                        <label>Daemon Tick <code> Current = X seconds</code></label>
+                                        <select class="form-control" id="daemonTick" name="daemonTick">
+                                            <option value="5">5 Seconds</option>
+                                            <option value="10">10 Seconds</option>
+                                            <option value="15">15 Seconds</option>
+                                            <option value="30">30 Seconds</option>
+                                            <option value="60">60 Seconds</option>
+                                            <option value="120">120 Seconds</option>
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Client Active Timeout <code> Current = {{.CurrentTimeout}} minutes</code></label>
+                                        <select class="form-control" id="clientTimeout" name="clientTimeout">
+                                            <option value="15">15 Minutes</option>
+                                            <option value="30">30 Minutes</option>
+                                            <option value="360">6 Hours</option>
+                                            <option value="720">12 Hours</option>
+                                            <option value="1440">24 Hours</option>
+                                            <option value="2880">48 Hours</option>
+                                        </select>
+                                    </div>
+
+
+                                </div>
+                                <div class="card-footer">
+                                    <button class="btn btn-primary icon-btn" type="submit"><i
+                                            class="fas fa-fw fa-lg fa-save"></i> Save
+                                    </button>&nbsp;&nbsp;&nbsp; &nbsp;<a class="btn btn-primary icon-btn float-right"
+                                                                         data-target="#modal-default"
+                                                                         data-toggle="modal" type="button"><i
+                                        class="fa fa-fw fa-lg fa fa-question"></i> Help</a>
+                                </div>
+                            </form>
+                        </div>
+
+
+                    </div>
+
+                    <!-- /.col-md-6 -->
+                    <div class="col-lg-6">
+                        <div class="card card-primary card-outline">
+                            <div class="card-header">
+                                <h5 class="m-0">Admin Accounts <div class="float-right"><small><code>Will have full access to C2</code></small></div></h5>
+                            </div>
+                            <div class="card-body">
+                                <table class="table table-striped table-borderless dark-mode" id="adminTable">
+                                    <thead>
+                                    <tr>
+                                        <th>Username</th>
+                                        <th>Last Seen</th>
+                                        <th>Options</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    {{ range .AdminsTable}}
+
+                                    <tr>
+                                        <td>{{.AdminUsername}}</td>
+                                        <td>{{.AdminLastSeen}}</td>
+
+                                        <td>
+                                            <center>
+                                                <a class="btn btn-danger  btn-flat" name="{{.AdminUID}}"
+                                                   onclick="deleteAdmin(this)" href="#"><i
+                                                        class="fas fa-lg fa-trash-alt"></i></a>
+                                            </center>
+                                        </td>
+                                    </tr>
+
+                                    {{ end}}
+
+                                    </tbody>
+                                </table>
+                                <br>
+                                <form action="../add/admin" class="form-horizontal" id="add" method="post" name="add">
+                                    <div class="card-header">
+                                        <h5 class="m-0">New Admin Account</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" name="username" id="username"
+                                                   placeholder="Username" required>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-user"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            <input type="password" class="form-control" name="password" id="password"
+                                                   placeholder="Password" required>
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-lock"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-footer">
+                                        <button class="btn btn-primary icon-btn" type="submit"><i
+                                                class="fas fa-fw fa-lg fa-plus"></i> Add Account
+                                        </button>&nbsp;&nbsp;&nbsp; &nbsp;<a class="btn btn-danger float-right" href="#"
+                                                                             onclick="resetFormB()"><i
+                                            class="fa fa-fw fa-lg fa-times-circle"></i> Clear Form</a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="card card-primary card-outline">
+                            <form action="../save/redbutton" class="form-horizontal" id="purge" method="post"
+                                  name="purge">
+                                <div class="card-header">
+                                    <h5 class="m-0">Database Management</h5>
+
+                                </div>
+                                <div class="card-body row">
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-outline-danger btn-block" onclick="deleteclients()">
+                                            <i class="fa fa-fw fa-lg fa-trash-alt"></i> Truncate Clients
+                                        </button>
+
+                                        <button type="button" class="btn btn-outline-danger btn-block" onclick="deletecommands()">
+                                            <i class="fa fa-fw fa-lg fa-trash-alt"></i> Truncate Commands
+                                        </button>
+
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-outline-success btn-block" onclick="backup()">
+                                            <i class="fas fa-fw fa-lg fa-save"></i> Backup Database
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer">
+                                    <center><code>Red actions are PERMANENT, All data will be lost. </code></center>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- /.col-md-6 -->
+                </div>
+
+                <!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">
+            https://github.com/SaturnsVoid
+        </div>
+        <!-- Default to the left -->
+        <strong><i>"I'm very much a creature of habit."</i> </strong> - Eminem
+    </footer>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Deamon Settings Help</h4>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p style="text-align: center;"><span><strong></strong></span></p>
+                <p><span><strong></strong></span></p>
+                <p><span><strong>Client Active Timeout</strong>: The time the client can go without contact with the C2 before the Deamon marks it as Non-Active.</span>
+                </p>
+                <p><span></span></p>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div>
+<!-- jQuery -->
+<script src="../static/js/jquery.js">
+</script> <!-- Bootstrap 4 -->
+<script src="../static/js/bootstrap.bundle.min.js">
+</script> <!-- AdminLTE App -->
+<script src="../static/js/adminlte.min.js">
+</script>
+<script src="../static/js/jquery.dataTables.min.js">
+</script>
+<script src="../static/js/dataTables.bootstrap4.min.js">
+</script>
+<script src="../static/js/dataTables.buttons.min.js">
+</script>
+<script src="../static/js/buttons.bootstrap4.min.js">
+</script>
+<script src="../static/js/pdfmake.min.js">
+</script>
+<script src="../static/js/buttons.html5.min.js">
+</script>
+<script src="../static/js/dataTables.select.min.js">
+</script>
+<script src="../static/js/sweetalert2.all.js">
+</script>
+
+<script src="../static/js/moment.min.js"></script>
+<script src="../static/js/toastr.min.js"></script>
+<script src="../static/js/jquery.inputmask.min.js"></script>
+
+<script>
+
+    function resetFormA() {
+        document.getElementById("save").reset();
+    }
+
+    function resetFormB() {
+        document.getElementById("add").reset();
+    }
+
+    $('#add').submit(function (event) {
+        event.preventDefault();
+        var user = $("#username").val();
+        var pass = $("#password").val();
+        $.ajax({
+            type: "POST",
+            url: "../add/admin",
+            data: "username=" + user + "&password=" + pass,
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire('Added!', 'New Admin was Added to the Database', 'success')
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire('Oops...', 'Something went wrong but nothing was lost.', 'error');
+                } else {
+                    toastr.warning('Unknown Error: ' + text)
+                }
+            }
+        });
+    });
+
+    $('#save').submit(function (event) {
+        event.preventDefault();
+        var name = $("#name").val();
+        var enckey = $("#enckey").val();
+        var usragnt = encodeURIComponent($("#usrAgent").val());
+        $.ajax({
+            type: "POST",
+            url: "../save/settings",
+            data: "name=" + name + "&enckey=" + enckey + "&usr=" + usragnt,
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire('Saved!', 'Settings Saved', 'success')
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire('Oops...', 'Something went wrong but nothing was lost.', 'error');
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning('Unknown Error: ' + text)
+                }
+            }
+        });
+    });
+
+    $('#deamon').submit(function (event) {
+        event.preventDefault();
+        var val = $("#clientTimeout").val();
+        $.ajax({
+            type: "POST",
+            url: "../save/daemon",
+            data: "clientTimeout=" + val,
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire('Saved!', 'Deamon Settings Saved', 'success')
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire('Oops...', 'Something went wrong but nothing was lost.', 'error');
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning('Unknown Error: ' + text)
+                }
+            }
+        });
+    });
+
+
+    $(function () {
+        $("#adminTable").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false,
+            buttons: [
+                {
+                    extend: 'collection',
+                    text: '<i class="fas fa-file-download"> Export<\/i>',
+                    buttons: [
+                        {
+                            extend: 'copyHtml5',
+                            text: '<i class="far fa-copy"> Copy<\/i>',
+                            titleAttr: 'Copy'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: '<i class="fa fa-table"> CVS<\/i>',
+                            titleAttr: 'CVS'
+                        }
+                    ]
+                }
+            ]
+        }).buttons().container().appendTo('#adminTable_wrapper .col-md-6:eq(0)');
+
+    });
+
+    function deleteAdmin(UID) {
+        var id = UID.name
+        Swal.fire({
+            title: 'Delete Admin?',
+            html: "<h3>Are you sure that you want to delete this admin account? </h3>",
+            showCancelButton: true,
+            confirmButtonText: `Delete`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "../delete/admin",
+                    data: "uid=" + id,
+                    success: function (text) {
+                        if (text == "success") {
+                            Swal.fire('Deleted!', 'Admin Deleted from Database', 'success')
+                            setTimeout("location.reload(true);", 2000);
+                        } else if (text == "error") {
+                            Swal.fire('Oops...', 'Something went wrong but nothing was lost.', 'error');
+                        } else {
+                            Swal.fire('Unknown Error', '... : ' + text, 'error');
+                        }
+                    }
+                });
+            } else if (result.dismiss) {
+                Swal.fire('Canceled', 'Nothing lost... Accept maybe some time.', 'info')
+            }
+        })
+    }
+
+    function deleteclients() {
+        Swal.fire({
+            title: 'Delete Clients Database?',
+            html: "<h3>Are you sure that you want to delete all Clients? </h3> <code>This can not be recovered!</code>",
+            showCancelButton: true,
+            confirmButtonText: `Delete`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "../clear/clients",
+                    success: function (text) {
+                        if (text == "success") {
+                            Swal.fire('Deleted!', 'All clients have been deleted from Database.', 'success')
+                            setTimeout("location.reload(true);", 2000);
+                        } else if (text == "error") {
+                            Swal.fire('Oops...', 'Something went wrong but nothing was lost.', 'error');
+                        } else {
+                            Swal.fire('Unknown Error', '... : ' + text, 'error');
+                        }
+                    }
+                });
+            } else if (result.dismiss) {
+                Swal.fire('Canceled', 'Nothing lost... Accept maybe some time.', 'info')
+            }
+        })
+    }
+
+    function deletecommands() {
+        Swal.fire({
+            title: 'Delete Commands Database?',
+            html: "<h3>Are you sure that you want to delete all commands? </h3> <code>This can not be recovered!</code>",
+            showCancelButton: true,
+            confirmButtonText: `Delete`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: "POST",
+                    url: "../clear/commands",
+                    success: function (text) {
+                        if (text == "success") {
+                            Swal.fire('Deleted!', 'All commands have been deleted from Database.', 'success')
+                            setTimeout("location.reload(true);", 2000);
+                        } else if (text == "error") {
+                            Swal.fire('Oops...', 'Something went wrong but nothing was lost.', 'error');
+                        } else {
+                            Swal.fire('Unknown Error', '... : ' + text, 'error');
+                        }
+                    }
+                });
+            } else if (result.dismiss) {
+                Swal.fire('Canceled', 'Nothing lost... Accept maybe some time.', 'info')
+            }
+        })
+    }
+
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    window.onload = function () {
+        let conn;
+        let last;
+
+        if (window["WebSocket"]) {
+            conn = new WebSocket("wss://" + document.location.host + "/live");
+            conn.onopen = function () {
+                console.log("Live Agent: Connected");
+                conn.send("ping");
+            };
+            conn.onclose = function (evt) {
+                console.log("Live Agent: Connection Closed (" + evt.code + ")");
+            };
+            conn.onmessage = function (evt) {
+                if (evt.data.length >= 1) {
+                    if(evt.data === "pong") {
+                        setTimeout(function(){
+                            conn.send("ping");
+                        }, 2000);
+                    }else{
+                        if (evt.data !== last) {
+                            last = evt.data;
+                            const words = evt.data.split("|");
+                            if (words[0] === "info") {
+                                toastr.info(words[1], words[2]);
+                            }
+                            if (words[0] === "success") {
+                                toastr.success(words[1], words[2]);
+                            }
+                            if (words[0] === "error") {
+                                toastr.error(words[1], words[2]);
+                            }
+                        }
+                    }
+                }
+            };
+        } else {
+            alert("Your browser does not support WebSockets. Do to this you will not get Live Notifications.");
+        }
+    };
+</script>
+</body>
+</html>

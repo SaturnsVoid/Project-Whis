@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hidden Browser: {{.ClientUID}}</title>
+    <meta charset="utf-8">
+    <script>
+
+        var ws;
+
+        /*window.addEventListener("load", function (evt) {
+          console.log("loaded");
+
+          document.querySelector("#btnGo").addEventListener("click", (e) => {
+            const evt = { type: "navigateTo", url: document.querySelector("input").value }
+            ws.send(JSON.stringify(evt))
+          })
+
+          document.querySelector("#btnBack").addEventListener("click", (e) => {
+            const evt = { type: "navigateBack" }
+            ws.send(JSON.stringify(evt))
+          })
+
+          document.querySelector("#btnForward").addEventListener("click", (e) => {
+            const evt = { type: "navigateForward" }
+            ws.send(JSON.stringify(evt))
+          })
+
+          var canvas = document.querySelector("canvas")
+          var w = window.innerWidth;
+          var h = window.innerHeight - document.querySelector("#addressbar").clientHeight;
+          canvas.width = w;
+          canvas.height = h;
+          var ctx = canvas.getContext("2d")
+          ctx.moveTo(0, 0)
+          ctx.lineTo(w, h)
+          ctx.stroke()
+
+          document.querySelector("#btnR").addEventListener("click", e => {
+            ws.send(JSON.stringify({ type: "resize", width: w, height: h }))
+          })
+
+          var lastR = 0
+          window.addEventListener("resize", e => {
+            w = window.innerWidth;
+            h = window.innerHeight - document.querySelector("#addressbar").clientHeight;
+            canvas.width = w;
+            canvas.height = h;
+            ws.send(JSON.stringify({ type: "resize", width: w, height: h }))
+          })
+
+          var prot = "ws"
+          if (window.location.protocol.startsWith("https")) prot = "wss"
+          const wsurl = prot + "://" + window.location.host + window.location.pathname + "ws"
+          ws = new WebSocket(wsurl);
+          ws.onopen = function (evt) {
+            console.log("OPEN");
+            ws.send(JSON.stringify({ type: "start", width: w, height: h }))
+          }
+          ws.onclose = function (evt) {
+            console.log("CLOSE");
+            ws = null;
+          }
+          ws.onmessage = async function (evt) {
+            var reader = new FileReader();
+            reader.readAsDataURL(evt.data);
+            reader.onloadend = function () {
+              var base64data = reader.result;
+              var img = new Image()
+              img.onload = () => {
+                ctx.drawImage(img, 0, 0, img.width, img.height)
+                ctx.fillText("size: " + evt.data.size, 0, 0)
+              }
+              img.src = base64data
+            }
+          }
+          ws.onerror = function (evt) {
+            console.log("ERROR: " + evt.data);
+          }
+          var lastMove = 0
+          var lastWheel = 0
+          const buttons = { 0: 'none', 1: 'left', 2: 'middle', 3: 'right' };
+          document.addEventListener("mousemove", e => {
+            var since = new Date().getTime() - lastMove
+            if (since < 15) return
+            ws.send(JSON.stringify({ type: "mouseMoved", modifiers: modifiersForEvent(e), x: e.offsetX, y: e.offsetY }))
+            lastMove = new Date().getTime()
+          })
+          document.addEventListener("mousedown", e => {
+            ws.send(JSON.stringify({ type: "mousePressed", button: buttons[event.which], modifiers: modifiersForEvent(e), x: e.offsetX, y: e.offsetY, clickCount: 1 }))
+          })
+          document.addEventListener("mouseup", e => {
+            ws.send(JSON.stringify({ type: "mouseReleased", button: buttons[event.which], modifiers: modifiersForEvent(e), x: e.offsetX, y: e.offsetY, clickCount: 1 }))
+          })
+          document.addEventListener("wheel", e => {
+            var since = new Date().getTime() - lastWheel
+            if (since < 15) return
+            const args = { type: "mouseWheel", button: buttons[event.which], deltaX: e.deltaX, deltaY: e.deltaY, modifiers: modifiersForEvent(e), x: e.offsetX, y: e.offsetY }
+            console.log(args)
+            ws.send(JSON.stringify(args))
+            lastMheel = new Date().getTime()
+          })
+          document.addEventListener("keydown", e => {
+            var args = { keyCode: e.keyCode, key: e.key, code: e.code, modifiers: modifiersForEvent(e), keyIdentifier: e.keyIdentifier, type: "keyDown" }
+            console.log(args)
+            ws.send(JSON.stringify(args))
+          })
+          document.addEventListener("keyup", e => {
+            var args = { keyCode: e.keyCode, key: e.key, code: e.code, modifiers: modifiersForEvent(e), keyIdentifier: e.keyIdentifier, type: "keyUp" }
+            console.log(args)
+            ws.send(JSON.stringify(args))
+          })
+          document.addEventListener("keypress", e => {
+            var args = { keyCode: e.keyCode, key: e.key, code: e.code, modifiers: modifiersForEvent(e), keyIdentifier: e.keyIdentifier, type: "char", text: String.fromCharCode(e.charCode) }
+            console.log(args)
+            ws.send(JSON.stringify(args))
+          })
+
+        });*/
+    </script>
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        #addressbar {
+            display: flex
+        }
+
+        #addressbar input {
+            flex-grow: 1;
+        }
+    </style>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css" rel="stylesheet"/>
+    <link href="../static/css/all.min.css" rel="stylesheet">
+    <link href="../static/css/adminlte.min.css" rel="stylesheet">
+</head>
+
+<body class="dark-mode">
+<div id="addressbar">
+    <div class="input-group mb-6">
+        <button class="btn-sm btn-primary icon-btn" id="btnBack"><i class="fas fa-backward"></i></button>&nbsp;&nbsp;
+        <button class="btn-sm btn-primary icon-btn" id="btnForward"><i class="fas fa-forward"></i></button>&nbsp;&nbsp;
+        <button class="btn-sm btn-primary icon-btn" id="btnR"><i class="fas fa-sync-alt"></i></button>&nbsp;&nbsp;
+        <div class="input-group-prepend">
+            <span class="input-group-text">URL</span>
+        </div>
+        <input type="text" class="form-control" id="input" placeholder="https://google.com">
+        <button class="btn-sm btn-primary icon-btn" id="btnGo">Go</button>&nbsp;&nbsp;
+    </div>
+</div>
+<br>
+<canvas tabindex="1"></canvas>
+<script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+<script>
+    function modifiersForEvent(event) {
+        return (event.altKey ? 1 : 0) | (event.ctrlKey ? 2 : 0) | (event.metaKey ? 4 : 0) | (event.shiftKey ? 8 : 0);
+    }
+
+    var canvas = document.querySelector("canvas")
+    var w = window.innerWidth;
+    var h = window.innerHeight - document.querySelector("#addressbar").clientHeight;
+    canvas.width = w;
+    canvas.height = h;
+    var ctx = canvas.getContext("2d")
+    ctx.moveTo(0, 0)
+    ctx.lineTo(w, h)
+    ctx.stroke()
+
+    const socket = io({
+        path: "/caster/sock"
+    });
+    window.socket = socket;
+
+    socket.on("connect", e => {
+        socket.emit("start", {width: w, height: h})
+    });
+
+    socket.on("disconnect", e => {
+        console.log("disconnect", e)
+    });
+
+    socket.on("error", e => {
+        console.log("error", e)
+    });
+
+    socket.on("frame", data => {
+        var img = new Image()
+        img.onload = () => {
+            ctx.drawImage(img, 0, 0, img.width, img.height)
+        }
+        img.src = "data:application/octet-stream;base64," + data
+    })
+
+    window.addEventListener("beforeunload", () => {
+        socket.emit("stop")
+        socket.close()
+    })
+
+    var lastMove = 0
+    var lastWheel = 0
+    const buttons = {0: 'none', 1: 'left', 2: 'middle', 3: 'right'};
+    canvas.addEventListener("mousemove", e => {
+        var since = new Date().getTime() - lastMove
+        if (since < 15) return
+        socket.emit("event", {type: "mouseMoved", modifiers: modifiersForEvent(e), x: e.offsetX, y: e.offsetY})
+        lastMove = new Date().getTime()
+    })
+    canvas.addEventListener("mousedown", e => {
+        socket.emit("event", {
+            type: "mousePressed",
+            button: buttons[event.which],
+            modifiers: modifiersForEvent(e),
+            x: e.offsetX,
+            y: e.offsetY,
+            clickCount: 1
+        })
+    })
+    canvas.addEventListener("mouseup", e => {
+        socket.emit("event", {
+            type: "mouseReleased",
+            button: buttons[event.which],
+            modifiers: modifiersForEvent(e),
+            x: e.offsetX,
+            y: e.offsetY,
+            clickCount: 1
+        })
+    })
+    canvas.addEventListener("wheel", e => {
+        var since = new Date().getTime() - lastWheel
+        if (since < 15) return
+        const args = {
+            type: "mouseWheel",
+            button: buttons[event.which],
+            deltaX: e.deltaX,
+            deltaY: e.deltaY,
+            modifiers: modifiersForEvent(e),
+            x: e.offsetX,
+            y: e.offsetY
+        }
+        console.log(args)
+        socket.emit("event", args)
+        lastMheel = new Date().getTime()
+    })
+
+    document.addEventListener("click", e => {
+        if (e.target == canvas) {
+            canvas.focus()
+        }
+    })
+
+    canvas.addEventListener("keydown", e => {
+        var args = {
+            keyCode: e.keyCode,
+            key: e.key,
+            code: e.code,
+            modifiers: modifiersForEvent(e),
+            keyIdentifier: e.keyIdentifier,
+            type: "keyDown"
+        }
+        console.log(args)
+        socket.emit("event", args)
+    })
+    canvas.addEventListener("keyup", e => {
+        var args = {
+            keyCode: e.keyCode,
+            key: e.key,
+            code: e.code,
+            modifiers: modifiersForEvent(e),
+            keyIdentifier: e.keyIdentifier,
+            type: "keyUp"
+        }
+        console.log(args)
+        socket.emit("event", args)
+    })
+    canvas.addEventListener("keypress", e => {
+        var args = {
+            keyCode: e.keyCode,
+            key: e.key,
+            code: e.code,
+            modifiers: modifiersForEvent(e),
+            keyIdentifier: e.keyIdentifier,
+            type: "char",
+            text: String.fromCharCode(e.charCode)
+        }
+        console.log(args)
+        socket.emit("event", args)
+    })
+
+    document.querySelector("#input").addEventListener("keypress", e => {
+        if (e.keyCode == 13) {
+            const evt = {type: "navigateTo", url: document.querySelector("input").value}
+            socket.emit("event", evt)
+        }
+    })
+    document.querySelector("#btnGo").addEventListener("click", (e) => {
+        const evt = {type: "navigateTo", url: document.querySelector("input").value}
+        socket.emit("event", evt)
+    })
+
+    document.querySelector("#btnBack").addEventListener("click", (e) => {
+        const evt = {type: "navigateBack"}
+        socket.emit("event", evt)
+    })
+
+    document.querySelector("#btnForward").addEventListener("click", (e) => {
+        const evt = {type: "navigateForward"}
+        socket.emit("event", evt)
+    })
+
+    var lastR = 0
+    window.addEventListener("resize", e => {
+        w = window.innerWidth;
+        h = window.innerHeight - document.querySelector("#addressbar").clientHeight;
+        canvas.width = w;
+        canvas.height = h;
+        var since = new Date().getTime() - lastR
+        if (since < 100) return
+        socket.emit("event", {type: "resize", width: w, height: h})
+        lastR = new Date().getTime()
+    })
+</script>
+
+</body>
+
+</html>
