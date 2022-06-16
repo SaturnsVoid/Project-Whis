@@ -1,5 +1,7 @@
 # Project Discontinued, I no longer have time or interest in Malware Development. (10/16/2021)
 
+Some Items are removed. 
+
 # Project-Whis (_WORKING NAME_)
 
 Project-Whis is a Advanced HTTP Botnet / Remote Admin Tool written in GoLANG mainly. The Server (C2) is Cross-Platform and can be run on Windows, Linux, MacOS, Etc. once compiled for it. Supported Clients for Windows, Linux and Android Based Systems. The user Frontend is written in HTML, CSS3, JavaScript while using **Bootstrap4** and **Font Awesome** frameworks.
