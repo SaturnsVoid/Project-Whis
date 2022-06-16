@@ -1,4 +1,4 @@
-# Project Discontinued, I no longer have time or interest in Malware Development. - 06-16-2022
+# Project Discontinued, I no longer have time or interest in Malware Development. (10/16/2021)
 
 # Project-Whis (_WORKING NAME_)
 
